@@ -277,6 +277,14 @@ button:disabled{
 }
 
 @media (max-width:470px){
+    .container, .grid, .mini-grid {
+        transform: perspective(900px) rotateX(10deg);
+        width: 100%;  
+        max-width: none; 
+    }
+
+
+
     .content-right {
         margin-left: 16px;
     }

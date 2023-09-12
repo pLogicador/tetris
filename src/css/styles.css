@@ -265,31 +265,46 @@ button:disabled{
     text-align: center;
     align-items: center;
     justify-items: center;
-
 }
 
 
 /*Responsividade*/
+
 @media(max-width: 990px){
     .mobile-buttons-container{
         display: grid;
     }
 }
 
-/*
-@media (max-width:470px){
 
+@media (max-width:470px){
+    /*
     .content-right {
         margin-left: 16px;
     }
+    */
 
     .container-right h3{
-        font-size: 20px;
+        width: 120px;
+        height: 100px;
+        font-size: 15px;
+        margin-top: 20px;
+        letter-spacing: 1px;
+        color: rgb(0, 247, 255);
+        border: 5px solid #ffca1d;
+        background-color: black;
+        font-family: "Press Start 2P", sans-serif;
+        box-shadow: 5px 5px 5px 0  rgba(192, 120, 13, 0.5);
+        justify-content: center;
+        align-items: center;
         text-align: center;
+        padding: 10px;
+        flex-direction: column
     }
-
+    
     .score{
-        display: block;
+        font-size: 10px;
+        font-weight: bold;
+        margin-top: 5px; 
     }
 }
-*/

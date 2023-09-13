@@ -5,6 +5,8 @@ Este é um clone simples do clássico jogo Tetris, implementado em JavaScript. O
 
 ### OBS: Este jogo ainda está em fase de testes
 
+[Jogar Tetris!](https://plogicador.github.io/TETRIS/)
+
 
 ![tetrisGitHub](https://github.com/pLogicador/TETRIS/assets/113561981/a4245ba4-cd89-41fe-91ce-2b4f2050bc5f)
 
@@ -18,9 +20,9 @@ Este é um clone simples do clássico jogo Tetris, implementado em JavaScript. O
 * O jogo termina quando as peças se acumulam até o topo da tela.
   
 ## Como executar
-Para jogar o jogo, basta acessar o link abaixo em seu navegador da web. Não é necessário instalar nenhuma dependência ou configurar um servidor.
+Para jogar o jogo, basta acessar o [link aqui](https://plogicador.github.io/TETRIS/) em seu navegador da web. Não é necessário instalar nenhuma dependência ou configurar um servidor.
 
-https://plogicador.github.io/TETRIS/
+
 
 Divirta-se jogando Tetris!
 

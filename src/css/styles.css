@@ -474,7 +474,7 @@ button:disabled{
 /* Estilos responsivos para dispositivos móveis */
 @media screen and (max-width: 768px) {
     #audio-container {
-      top: 1px; /* Ajuste a posição vertical conforme necessário para dispositivos móveis */
-      left: 9%; /* Ajuste a posição horizontal conforme necessário para dispositivos móveis */
+        top: 1px; 
+        left: 9%; 
     }
 }

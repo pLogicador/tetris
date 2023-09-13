@@ -70,6 +70,11 @@ function changeMusicAndDifficulty() {
 }
 
 
+function playPauseSound() {
+    const pauseSound = new Audio("./src/assets/sounds/pause-clear.wav");
+    pauseSound.play();
+}
+
 
 
 // Formas
@@ -120,6 +125,8 @@ let nextColor = colors[currentColor];
 
 
 
+
+
 // @1.0 Cálculo para geração aleatória dos formatos
 let currentPosition = 3;
 let currentRotation = 0;
@@ -151,6 +158,7 @@ function freezeFilled(){
     if (currentShape.some(squareIndex =>
         $gridSquares[squareIndex + currentPosition + gridWidth].classList.contains("filled")
     )) {
+        
         currentShape.forEach(squareIndex => $gridSquares[squareIndex + currentPosition].classList.add("filled"))
 
         currentPosition = 3;
@@ -176,6 +184,12 @@ function freezeFilled(){
 
 
 
+
+
+
+
+
+
 /*Preview do próximo formato*/
 const $miniGridSquares = document.querySelectorAll(".mini-grid div");
 const miniGridWidth = 6;
@@ -193,6 +207,7 @@ let nextRandomShape = Math.floor(Math.random() * possibleNextShapes.length);
 
 
 function displayNextShape(){
+    
     // apaga os formatos antigos
     $miniGridSquares.forEach(square => square.classList.remove("shapePainted", `${colors[nextColor]}`));
     nextColor = Math.floor(Math.random() * colors.length)
@@ -204,6 +219,7 @@ function displayNextShape(){
     nextShape.forEach(squareIndex =>
         $miniGridSquares[squareIndex + nextPosition + miniGridWidth].classList.add("shapePainted", `${colors[nextColor]}`)
     );
+    
 }
 
 displayNextShape();
@@ -213,7 +229,7 @@ displayNextShape();
 
 
 
-/*Start,  restart*/
+/*Start,  restart, pause*/
 
 let timeMoveDown = 600;
 let timerId = null;
@@ -221,9 +237,7 @@ const $startStopButton = document.getElementById("start-button") ;
 
 $startStopButton.addEventListener("click", ()=>{
     if (timerId){
-        clearInterval(timerId);
-        timerId = null;
-
+        pauseGame();
 
 
     } else {
@@ -238,6 +252,20 @@ const $restartButton = document.getElementById("restart-button");
 $restartButton.addEventListener("click", ()=>{
     window.location.reload();
 })
+
+
+
+function pauseGame() {
+    if (timerId) {
+        clearInterval(timerId);
+        timerId = null;
+        $startStopButton.textContent = "Play";
+        currentMusic.pause();
+        musicStarted = false;
+
+        playPauseSound();
+    }
+}
 
 
 
@@ -396,70 +424,88 @@ function updateScore(updateValue){
 
 
 function changeMusicAndDifficulty() {
-    if (score > 500 && score <= 1000 && currentMusic !== musicB) {
+    if (score > 500 && score <= 1200 && currentMusic !== musicB) {
         timeMoveDown = 500;
         changeMusic(musicB);
         applyTheme(1);
-    } else if (score > 1000 && score <= 2600 && currentMusic !== musicC) {
+
+    } else if (score > 1200 && score <= 2000 && currentMusic !== musicC) {
         timeMoveDown = 400;
         changeMusic(musicC);
         applyTheme(2);
-    } else if (2600 < score && score <= 3900 && currentMusic !== musicD) {
+        
+
+    } else if (2000 < score && score <= 3500 && currentMusic !== musicD) {
         timeMoveDown = 250;
         changeMusic(musicD);
         applyTheme(3);
-    } else if (3900 < score && score <= 5200 && currentMusic !== musicE) {
+        
+    } else if (3500 < score && score <= 4200 && currentMusic !== musicE) {
         timeMoveDown < 150;
         changeMusic(musicE);
         applyTheme(4);
-    } else if (5200 < score && score <= 9900 && currentMusic !== musicF) {
+
+    } else if (4200 < score && score <= 7900 && currentMusic !== musicF) {
         timeMoveDown < 100;
         changeMusic(musicF);
-    } else if (9900 < score && score <= 15900 && currentMusic !== musicG) {
+        applyTheme(5);
+
+    } else if (7900 < score && score <= 9900 && currentMusic !== musicG) {
         timeMoveDown < 100;
         changeMusic(musicG);
-    } else if (15900 < score && score <= 60900 && currentMusic !== musicG){
+        applySnowTheme();
+
+    } else if (9900 < score && score <= 10900 && currentMusic !== musicG){
         timeMoveDown < 90;
         changeMusic(musicG);
+        applyRainTheme();
     }
 }
 
+/* Temas para cada dificuldade */
+function applyTheme(themeNumber) {
+    // Remove todas as classes de tema do elemento .grid
+    const grid = document.querySelector('.grid');
+    grid.classList.remove('theme-1', 'theme-2', 'theme-3', 'theme-4');
 
-const themes = [
-    {
-        gridBackground: 'linear-gradient(0deg, pink, white)'
-    
-    },
-    {
-        gridBackground: 'linear-gradient(15deg, green, purple)' 
-    },
-    {
-        gridBackground: 'linear-gradient(15deg, red, orange)' 
-    },
+    // Aplica a classe de tema com base na dificuldade
+    grid.classList.add(`theme-${themeNumber}`);
 
-    {
-        gridBackground: 'linear-gradient(15deg, yellow, green)' 
-    }
-    
-];
+}
 
+/* Tema da chuva */
+function applyRainTheme() {
+    const grid = document.querySelector('.grid');
+    grid.classList.add('theme-rain');
 
-function applyTheme(themeIndex) {
-    // Obtenhem o tema atual com base no índice
-    const theme = themes[themeIndex];
+    // Ajusta a cor do score para o tema de chuva
+    const scoreElement = document.querySelector('.score');
+    scoreElement.style.color = 'red';
 
-    // Aplica os estilos do tema ao grid e ao texto
-    const $grid = document.querySelector('.grid');
-    const $score = document.querySelector('.score');
+    const miniGrid = document.querySelector('.mini-grid');
+    miniGrid.classList.add('theme-rain-mini-grid');
 
-    $grid.style.background = theme.gridBackground;
-    $score.style.color = theme.textColor;
-
+    const contentRight = document.querySelector('.content-right');
+    contentRight.classList.add('theme-rain-content-right');
 }
 
 
 
+/* Tema da neve */
+function applySnowTheme() {
+    const grid = document.querySelector('.grid');
+    grid.classList.add('theme-snow');
 
+    // Ajusta a cor do score para o tema da neve
+    const scoreElement = document.querySelector('.score');
+    scoreElement.style.color = 'blue';
+
+    const miniGrid = document.querySelector('.mini-grid');
+    miniGrid.classList.add('theme-snow-mini-grid');
+
+    const contentRight = document.querySelector('.content-right');
+    contentRight.classList.add('theme-snow-content-right');
+}
 
 
 

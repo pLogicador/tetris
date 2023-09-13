@@ -133,7 +133,8 @@ button:disabled{
 .score {
     font-size: 10px;
     font-weight: bold;
-    margin-top: 5px; 
+    margin-top: 5px;
+    color: white;
 }
 
 
@@ -153,9 +154,6 @@ button:disabled{
     width: 20px;
     height: 20px;
 }
-
-
-
 
 
 .lines-counter {
@@ -184,14 +182,13 @@ button:disabled{
     font-size: 15px;
 }
 
-
-
 .shapePainted{
     width: 20px;
     height: 20px;
     border: 1px solid rgb(17, 17, 17);
     box-shadow: 5px 5px 5px 5px transparent, inset 3px 3px 0 rgba(121, 117, 117, 0.5), inset 0 0 0 2px white;
-    background-color: red;
+    background-color: rgb(0, 0, 0);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 .shapePainted::before {
@@ -205,28 +202,41 @@ button:disabled{
 }
 
 
+/* Estilo para o formato fantasma */
+.ghostShape {
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgb(17, 17, 17);
+    box-shadow: 5px 5px 5px 5px transparent, inset 3px 3px 0 rgba(121, 117, 117, 0.5), inset 0 0 0 2px white;
+    background-color: white; /* Cor branca */
+}
+
+
+
+
+
 .blue{
-    background-color: rgb(1, 1, 185);
+    background-color: rgb(4, 62, 156); /* Azul */
 }
 
 .red{
-    background-color: rgb(197, 0, 0);
+    background-color: rgb(191, 13, 13); /* Vermelho */
 } 
 
 .green{
-    background-color: rgb(0, 255, 0);
+    background-color: rgb(12, 184, 6); /* Verde */
 } 
 
 .orange{
-    background-color: rgb(255, 94, 0);
+    background-color: rgb(255, 110, 9); /* Laranja */
 }
 
 .yellow{
-    background-color: rgb(199, 199, 6);
+    background-color: rgb(253, 250, 36); /* Amarelo */
 } 
 
 .pink{
-    background-color: rgb(204, 33, 62);
+    background-color: rgb(122, 4, 101); /* Roxo */
 }
 
 
@@ -298,6 +308,127 @@ button:disabled{
     .score{
         font-size: 10px;
         font-weight: bold;
-        margin-top: 5px; 
+        margin-top: 5px;
+        color: white;
     }
+}
+
+
+
+
+
+/* Tema de fundo para dificuldade 1 */
+.theme-1 {
+    background: linear-gradient(0deg, rgb(187, 131, 140), rgb(221, 185, 24));
+}
+
+/* Tema de fundo para dificuldade 2 */
+.theme-2 {
+    background: linear-gradient(0deg, rgb(69, 189, 69), rgb(119, 4, 119));
+}
+
+/* Tema de fundo para dificuldade 3 */
+.theme-3 {
+    background: linear-gradient(15deg, rgb(204, 8, 8), rgb(77, 15, 194), rgb(184, 178, 178));
+}
+
+/* Tema de fundo para dificuldade 4 */
+.theme-4 {
+    background: linear-gradient(15deg, rgb(69, 123, 133), rgb(2, 36, 75));
+}
+
+.theme-5 {
+    background: linear-gradient(15deg, rgb(18, 19, 19), rgb(2, 59, 42));
+}
+
+
+
+
+/*Tema de fundo para a fase da chuva */
+.theme-rain {
+    position: relative;
+    background: linear-gradient(0deg, rgb(0, 0, 0), purple);
+}
+
+.theme-rain::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/src/assets/images/rain.gif');
+    background-repeat: repeat;
+    background-size: cover;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+
+.theme-rain .shapePainted {
+    /* Estilo das formas, como cor e sombra */
+    background-color: rgb(160, 4, 113); /* Azul transparente */
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+
+.theme-rain-content-right{
+    border: 10px solid #6700bb;
+    box-shadow: 10px 10px 12px  rgba(198, 9, 255, 0.5);
+    background: linear-gradient(rgb(3, 3, 3), rgb(27, 4, 43));
+}
+
+
+.theme-rain-mini-grid {
+    background-color: blueviolet;
+    margin-top: 30px;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: 5px 5px 5px 0  rgba(255, 0, 0, 0.5);
+}
+
+
+
+
+/*Tema de fundo para a fase da neve */
+.theme-snow {
+    position: relative;
+    background: linear-gradient(90deg, #ffffff 10%, #d0d0d0 50%, #ffffff 90%); /* Gradiente para simular neve */
+}
+
+.theme-snow .shapePainted {
+    background-color: aqua;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.theme-snow::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/src/assets/images/snow.gif');
+    background-repeat: repeat;
+    background-size: cover;
+    opacity: 0.5;
+    z-index: 1; 
+}
+
+.theme-snow-mini-grid {
+    margin-top: 30px;
+    width: 120px;
+    height: 120px;
+    background: rgb(255, 255, 255);
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: 5px 5px 5px 0  rgba(10, 255, 214, 0.5);
+}
+
+.theme-snow-content-right{
+    border: 10px solid #0417c4;
+    background-image: linear-gradient(0deg, white, aqua);
+    box-shadow: 5px 5px 5px 0  rgba(10, 255, 214, 0.5);
 }

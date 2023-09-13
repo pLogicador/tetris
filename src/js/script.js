@@ -29,6 +29,19 @@ const musicH = new Audio("./src/assets/sounds/TetrisBGM2(Fast).mp3");
 const completLineAudio = new Audio("./src/assets/sounds/StageClear.mp3");
 const gameOverAudio = new Audio("./src/assets/sounds/GameOver.mp3")
 const freezeAudio = new Audio("./src/assets/sounds/block.mp3");
+const moveSound = new Audio("./src/assets/sounds/move-piece.mp3");
+const rotateSound = new Audio("./src/assets/sounds/rotate-piece.mp3");
+
+
+
+function playRotateSound(){
+    rotateSound.playbackRate = 3.50;
+    rotateSound.play();
+}
+
+function playMoveSound(){
+    moveSound.play();
+}
 
 
 const muteButton = document.getElementById("mute-button");
@@ -99,6 +112,7 @@ function playBackgroundMusic() {
 }
 
 function playCompleteLineAudio() {
+    completLineAudio.playbackRate = 1.5;
     completLineAudio.play();
 
     linesCleared++; // Incrementa o contador de linhas
@@ -131,6 +145,33 @@ function playPauseSound() {
     pauseSound.play();
 }
 
+
+
+
+function setMusicVolume(volume) {
+    musicA.volume = volume;
+    musicB.volume = volume;
+    musicC.volume = volume;
+    musicD.volume = volume;
+    musicE.volume = volume;
+    musicF.volume = volume;
+    musicG.volume = volume;
+    musicH.volume = volume;
+}
+
+
+
+function setSoundEffects(volume){
+    rotateSound.volume = volume;
+    moveSound.volume = volume;
+    completLineAudio.volume = volume;
+    freezeAudio.volume = volume;
+}
+
+
+// Ajusta o volume das músicas e efeitos
+setMusicVolume(0.5);
+setSoundEffects(0.4);
 
 
 // Formas
@@ -177,9 +218,6 @@ const allShapes = [lShape, zShape, tShape, oShape, iShape];
 const colors = ["red", "green", "orange", "yellow", "pink"];
 let currentColor = Math.floor(Math.random() * colors.length);
 let nextColor = colors[currentColor];
-
-
-
 
 
 
@@ -239,13 +277,6 @@ function freezeFilled(){
 
 
 
-
-
-
-
-
-
-
 /*Preview do próximo formato*/
 const $miniGridSquares = document.querySelectorAll(".mini-grid div");
 const miniGridWidth = 6;
@@ -286,7 +317,6 @@ displayNextShape();
 
 
 /*Start,  restart, pause*/
-
 let timeMoveDown = 600;
 let timerId = null;
 const $startStopButton = document.getElementById("start-button") ;
@@ -335,6 +365,7 @@ function moveDown(){
     eraseShape();
     currentPosition += 10;
     drawShape();
+    playMoveSound();
 }
 
 function moveLeft(){
@@ -351,6 +382,7 @@ function moveLeft(){
     eraseShape();
     currentPosition--
     drawShape();
+    playMoveSound();
 }
 
 function moveRight(){
@@ -368,7 +400,10 @@ function moveRight(){
     eraseShape();
     currentPosition++
     drawShape();
+    playMoveSound();
 }
+
+
 
 function previousRotation(){
     if (currentRotation === 0){
@@ -379,6 +414,7 @@ function previousRotation(){
 
     currentShape = allShapes[randomShape][currentRotation];
 }
+
 
 function rotateShape(){
     eraseShape();
@@ -409,7 +445,7 @@ function rotateShape(){
 
 
     drawShape();
-
+    playRotateSound();
 }
 
 

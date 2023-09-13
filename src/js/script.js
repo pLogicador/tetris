@@ -424,18 +424,18 @@ function updateScore(updateValue){
 
 
 function changeMusicAndDifficulty() {
-    if (score > 500 && score <= 1200 && currentMusic !== musicB) {
+    if (score > 400 && score <= 1200 && currentMusic !== musicB) {
         timeMoveDown = 500;
         changeMusic(musicB);
         applyTheme(1);
 
-    } else if (score > 1200 && score <= 2000 && currentMusic !== musicC) {
+    } else if (score > 1200 && score <= 1800 && currentMusic !== musicC) {
         timeMoveDown = 400;
         changeMusic(musicC);
         applyTheme(2);
         
 
-    } else if (2000 < score && score <= 3500 && currentMusic !== musicD) {
+    } else if (1800 < score && score <= 3500 && currentMusic !== musicD) {
         timeMoveDown = 250;
         changeMusic(musicD);
         applyTheme(3);

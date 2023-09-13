@@ -613,6 +613,7 @@ function controlKeyBoard(event){
 /*Caso mobile*/
 const isMobile = window.matchMedia('(max-width: 990px)').matches;
 
+
 if (isMobile){
     const $mobileButtons = document.querySelectorAll(".mobile-buttons-container button");
     $mobileButtons.forEach(button => button.addEventListener("click", ()=>{

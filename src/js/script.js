@@ -31,6 +31,62 @@ const gameOverAudio = new Audio("./src/assets/sounds/GameOver.mp3")
 const freezeAudio = new Audio("./src/assets/sounds/block.mp3");
 
 
+const muteButton = document.getElementById("mute-button");
+const audioIcon = document.getElementById("audio-icon");
+
+let isMuted = false;
+
+
+muteButton.addEventListener("click", () => {
+    isMuted = !isMuted; // Inverte o estado de mutado
+
+    if (isMuted) {
+      // Desmutar o áudio globalmente
+        unmuteAudio();
+    } else {
+      // Mutar o áudio globalmente
+        muteAudio();
+    }
+});
+
+function muteAudio() {
+    // Altere a classe do ícone para "audio-off" (ícone de "mute")
+    audioIcon.classList.remove("audio-on");
+    audioIcon.classList.add("audio-off");
+
+    // Define volume de todas as músicas para 0
+    musicA.volume = 0;
+    musicB.volume = 0;
+    musicC.volume = 0;
+    musicD.volume = 0;
+    musicE.volume = 0;
+    musicF.volume = 0;
+    musicG.volume = 0;
+    musicH.volume = 0;
+
+
+}
+
+function unmuteAudio() {
+    // Altere a classe do ícone para "audio-on" (ícone de alto-falante)
+    audioIcon.classList.remove("audio-off");
+    audioIcon.classList.add("audio-on");
+
+    // Restaura o volume de todas as músicas para 1.0 (valor original)
+    musicA.volume = 1.0;
+    musicB.volume = 1.0;
+    musicC.volume = 1.0;
+    musicD.volume = 1.0;
+    musicE.volume = 1.0;
+    musicF.volume = 1.0;
+    musicG.volume = 1.0;
+    musicH.volume = 1.0;
+
+}
+
+
+
+
 
 let currentMusic = musicA; // Inicialmente, com a música A
 let musicStarted = false; // Flag para verificar se a música já começou
@@ -424,33 +480,34 @@ function updateScore(updateValue){
 
 
 function changeMusicAndDifficulty() {
-    if (score > 400 && score <= 1200 && currentMusic !== musicB) {
+    if (score > 500 && score <= 1200 && currentMusic !== musicB) {
         timeMoveDown = 500;
         changeMusic(musicB);
         applyTheme(1);
+        
 
-    } else if (score > 1200 && score <= 1800 && currentMusic !== musicC) {
+    } else if (score > 1200 && score <= 1500 && currentMusic !== musicC) {
         timeMoveDown = 400;
         changeMusic(musicC);
         applyTheme(2);
         
 
-    } else if (1800 < score && score <= 3500 && currentMusic !== musicD) {
+    } else if (1500 < score && score <= 1900 && currentMusic !== musicD) {
         timeMoveDown = 250;
         changeMusic(musicD);
         applyTheme(3);
         
-    } else if (3500 < score && score <= 4200 && currentMusic !== musicE) {
+    } else if (1900 < score && score <= 2300 && currentMusic !== musicE) {
         timeMoveDown < 150;
         changeMusic(musicE);
         applyTheme(4);
 
-    } else if (4200 < score && score <= 7900 && currentMusic !== musicF) {
+    } else if (2300 < score && score <= 5900 && currentMusic !== musicF) {
         timeMoveDown < 100;
         changeMusic(musicF);
         applyTheme(5);
 
-    } else if (7900 < score && score <= 9900 && currentMusic !== musicG) {
+    } else if (5900 < score && score <= 9900 && currentMusic !== musicG) {
         timeMoveDown < 100;
         changeMusic(musicG);
         applySnowTheme();

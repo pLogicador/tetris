@@ -21,8 +21,8 @@ body {
 /* Estilo para o contêiner de áudio */
 #audio-container {
     position: absolute;
-    top: 6%; /* Ajuste essa propriedade para definir a posição vertical */
-    right: 40%; /* Ajuste essa propriedade para definir a posição horizontal */
+    top: 2%; /* Ajuste essa propriedade para definir a posição vertical */
+    left: 20%; /* Ajuste essa propriedade para definir a posição horizontal */
     z-index: 9999; /* Garante que o botão esteja acima de outros elementos */
 }
 
@@ -474,7 +474,7 @@ button:disabled{
 /* Estilos responsivos para dispositivos móveis */
 @media screen and (max-width: 768px) {
     #audio-container {
-      top: 10px; /* Ajuste a posição vertical conforme necessário para dispositivos móveis */
-      right: 200px; /* Ajuste a posição horizontal conforme necessário para dispositivos móveis */
+      top: 1px; /* Ajuste a posição vertical conforme necessário para dispositivos móveis */
+      left: 9%; /* Ajuste a posição horizontal conforme necessário para dispositivos móveis */
     }
 }

@@ -278,38 +278,47 @@ button:disabled{
 
 
 
-
-
-
-
-
 .mobile-buttons-container {
-    margin-top: 2px;
+    max-width: 300px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1px;
     max-width: 300px;
     display: none;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 50px 50px;
-    gap: 9px;
+    gap: 10px;
 }
 
-.mobile-buttons-container button {
-    width: 100px;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 10px 10px 12px  rgba(0, 0, 0, 0.5);
-    border-radius: 50px;
-    border: 5px solid #333;
-    font-family: "Press Start 2P", sans-serif;
-}
-
-.mobile-buttons-container button span {
-    color: #000000;
-    font-weight: bold;
-    font-size: 20px;
-    box-shadow: 0 10px 10px  rgba(0, 0, 0, 0.5);
-    border-radius: 50px;
-    text-align: center;
+.control-button {
+    margin-top: 40px;
+    width: 50px;
+    height: 50px;
+    background-image: linear-gradient(20deg, black, gray);
+    border: none;
+    cursor: pointer;
+    display: flex;
     align-items: center;
-    justify-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(0, 255, 234);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.nintendo-icon {
+    font-size: 30px; /* Tamanho do ícone */
+}
+
+
+.mobile-buttons-container .down-button {
+    margin-top: -30px;
+}
+
+.control-button .down-button{
+    margin-top: -10px;
 }
 
 
@@ -440,10 +449,27 @@ button:disabled{
     .mobile-buttons-container{
         display: grid;
     }
+    /* Move outros botões para cima */
+    .control-button {
+        margin-top: 10px; /* Ajuste a margem superior para movê-los para cima */
+        width: 30px; /* Reduza o tamanho dos botões */
+        height: 30px;
+        font-size: 16px; /* Ajuste o tamanho da fonte para torná-los menores */
+    }
+    .mobile-buttons-container .down-button {
+        margin-top: -30px;
+    }
+    
+    .control-button .down-button{
+        margin-top: -10px;
+    }
+    
+    
 }
 
 
 @media (max-width:470px){
+    
 
     .container-right h3{
         width: 120px;
@@ -477,4 +503,7 @@ button:disabled{
         top: 1px; 
         left: 9%; 
     }
+
+
 }
+

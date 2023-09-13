@@ -451,13 +451,13 @@ button:disabled{
     }
     /* Move outros botões para cima */
     .control-button {
-        margin-top: 10px; /* Ajuste a margem superior para movê-los para cima */
-        width: 30px; /* Reduza o tamanho dos botões */
-        height: 30px;
-        font-size: 16px; /* Ajuste o tamanho da fonte para torná-los menores */
+        margin-top: 10px;
+        width: 40px; 
+        height: 40px;
+        font-size: 30px;  
     }
     .mobile-buttons-container .down-button {
-        margin-top: -30px;
+        margin-top: -10px;
     }
     
     .control-button .down-button{

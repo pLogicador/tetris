@@ -40,6 +40,7 @@ function playRotateSound(){
 }
 
 function playMoveSound(){
+    rotateSound.playbackRate = 1.03;
     moveSound.play();
 }
 
@@ -112,7 +113,7 @@ function playBackgroundMusic() {
 }
 
 function playCompleteLineAudio() {
-    completLineAudio.playbackRate = 1.5;
+    completLineAudio.playbackRate = 1.2;
     completLineAudio.play();
 
     linesCleared++; // Incrementa o contador de linhas

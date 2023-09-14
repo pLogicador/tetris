@@ -250,7 +250,7 @@ button:disabled{
 
 /* Estilo para as células do mini-grid */
 .mini-grid div {
-    border: 1px solid #555555;
+    border: 1px solid #31312f;
     width: 20px;
     height: 20px;
 }
@@ -287,12 +287,12 @@ button:disabled{
 
 
 /* Estilo para as peças pintadas no grid */
+
 .shapePainted{
     width: 20px;
     height: 20px;
-    border: 1px solid rgb(0, 0, 0);
-    background-color: rgb(0, 0, 0);
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    border: 1px solid black;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0);
     position: relative;
 }
 
@@ -301,12 +301,23 @@ button:disabled{
 .shapePainted::before {
     content: "";
     display: block;
-    width: 4px;
-    height: 4px;
+    width: 17px; /*5px*/
+    height: 17px; /*5px*/
     padding: 0.10px 0.10px;
-    background-color: #fff;
-    position: absolute;
+    background-image: linear-gradient(45deg,rgba(255, 255, 255, 0.50), rgba(2, 2, 2, 0.10));
+    box-shadow: 
+        0px 0px 2px rgba(0, 0, 0, 0.5), /* Sombra superior */
+        2px 2px 2px rgba(0, 0, 0, 0.5), /* Sombra direita */
+        -2px -2px 2px rgba(255, 255, 255, 0.5), /* Sombra esquerda */
+        2px 2px 2px rgba(255, 255, 255, 0.5) inset, /* Sombra interna direita */
+        -2px -2px 2px rgba(0, 0, 0, 0.5) inset; /* Sombra interna esquerda */
+    position: relative;
+    
 }
+
+
+
+
 
 
 
@@ -351,7 +362,7 @@ button:disabled{
     
 }
 .theme-1-mini-grid {
-    background-color: rgb(84, 81, 87);
+    background-color: rgb(112, 104, 104);
     margin-top: 30px;
     width: 120px;
     height: 120px;

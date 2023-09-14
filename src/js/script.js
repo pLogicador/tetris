@@ -184,12 +184,20 @@ const iShape = [
     [gridWidth, gridWidth + 1, gridWidth + 2, gridWidth + 3]
 ]
 
+
+
+
 const allShapes = [lShape, zShape, tShape, oShape, iShape];
 
 // Cores das peças
 const colors = ["red", "green", "orange", "yellow", "pink"];
 let currentColor = Math.floor(Math.random() * colors.length);
 let nextColor = colors[currentColor];
+
+
+
+
+
 
 
 let currentPosition = 3;
@@ -476,6 +484,7 @@ function changeMusicAndDifficulty() {
         timeMoveDown = 395;
         changeMusic(musicB);
         applyTheme(1);
+        
 
     } else if (score > 1500 && score <= 2000 && currentMusic !== musicC) {
         timeMoveDown = 250;
@@ -514,7 +523,7 @@ function changeMusicAndDifficulty() {
         applyRainTheme();
 
     } else if (6000 < score && score <= 7000 && currentMusic !== musicJ) {
-        timeMoveDown < 90;
+        timeMoveDown < 100;
         changeMusic(musicJ);
         applySnowTheme();
     }

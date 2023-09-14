@@ -473,58 +473,58 @@ function updateScore(updateValue){
 function changeMusicAndDifficulty() {
 
     if (score > 500 && score <= 1200 && currentMusic !== musicB) {
-        timeMoveDown = 500;
+        timeMoveDown = 400;
         changeMusic(musicB);
         currentMusic.loop = true;
         applyTheme(1);
         
 
     } else if (score > 1200 && score <= 1500 && currentMusic !== musicC) {
-        timeMoveDown = 495;
+        timeMoveDown = 390;
         changeMusic(musicC);
         currentMusic.loop = true;
         applyTheme(2);
         
 
     } else if (1500 < score && score <= 1950 && currentMusic !== musicD) {
-        timeMoveDown = 440;
+        timeMoveDown = 250;
         changeMusic(musicD);
         currentMusic.loop = true;
         applyTheme(3);
         
     } else if (1950 < score && score <= 2300 && currentMusic !== musicE) {
-        timeMoveDown < 435;
+        timeMoveDown < 235;
         changeMusic(musicE);
         currentMusic.loop = true;
         applyTheme(4);
 
     } else if (2300 < score && score <= 2900 && currentMusic !== musicF) {
-        timeMoveDown < 400;
+        timeMoveDown < 255;
         changeMusic(musicF);
         currentMusic.loop = true;
         applyTheme(5);
 
     } else if (2900 < score && score <= 4000 && currentMusic !== musicG) {
-        timeMoveDown < 430;
+        timeMoveDown < 230;
         changeMusic(musicG);
         currentMusic.loop = true;
         applyTheme(6);
 
     } else if (4000 < score && score <= 4900 && currentMusic !== musicH){
-        timeMoveDown < 420;
+        timeMoveDown < 220;
         changeMusic(musicH);
         currentMusic.loop = true;
         applyTheme(7);
         
         
     } else if (4900 < score && score <= 6500 && currentMusic !== musicI){
-        timeMoveDown < 400;
+        timeMoveDown < 145;
         changeMusic(musicI);
         currentMusic.loop = true;
         applyRainTheme();
 
     } else if (6500 < score && score <= 6900 && currentMusic !== musicJ) {
-        timeMoveDown < 350;
+        timeMoveDown < 90;
         changeMusic(musicJ);
         currentMusic.loop = true;
         applySnowTheme();

@@ -1,29 +1,31 @@
+/* Reset CSS básico */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
 }
 
+/* Estilo geral do corpo */
 body {
     overflow: hidden;
     margin: 0;
     background-image: linear-gradient(20deg, rgb(48, 45, 45), rgb(136, 133, 136), rgb(0, 0, 0));
+    font-family: 'Arial', sans-serif;
 }
 
+/* Estilo para elementos vazios */
 .empty {
     background-color: transparent;
     border: none;
 }
 
 
-
 /* Estilo para o contêiner de áudio */
 #audio-container {
     position: absolute;
-    top: 2%; /* Ajuste essa propriedade para definir a posição vertical */
-    left: 20%; /* Ajuste essa propriedade para definir a posição horizontal */
-    z-index: 9999; /* Garante que o botão esteja acima de outros elementos */
+    top: 2%; 
+    left: 20%; 
+    z-index: 9999;
 }
 
 /* Estilo base para o botão de mute */
@@ -48,6 +50,9 @@ body {
 
 
 
+
+
+/* Estilo para o contêiner principal */
 .container {
     padding: 16px;
     margin: 0 auto;
@@ -56,15 +61,12 @@ body {
     flex-direction: column;
     justify-content: center;
     height: 100vh;
-
-    
     transform: perspective(900px) rotateX(10deg);
     overflow: hidden;
 }
 
 
-
-
+/* Estilo para o contêiner de conteúdo */
 .content-container{
     display: flex;
     border: 5px solid #1b1a1a;
@@ -72,7 +74,7 @@ body {
 }
 
 
-
+/* Estilo para o contêiner de botões */
 .buttons-container {
     grid-template-columns: 1fr 1fr;
     margin-bottom: 5px;
@@ -83,6 +85,7 @@ body {
     font-size: 10px;
 }
 
+/* Estilo para os botões */
 .buttons-container button {
     border: 5px solid rgb(255, 255, 255, 0.50);
     box-shadow: 10px 10px 12px  rgba(0, 0, 0, 0.5);
@@ -92,23 +95,22 @@ body {
     font-weight: bold;
     font-size: 12px;
     height: 32px;
+    cursor: pointer;
+    
 }
 
+/* Efeito de hover nos botões */
 .buttons-container button:hover {
     filter: brightness(0.8);
 }
 
-
-button {
-    cursor: pointer;
-}
-
+/* Estilo para botões desabilitados */
 button:disabled{
     cursor: not-allowed;
-    opacity: 0.1;
+    opacity: 0.5;
 }
 
-
+/* Estilos para botões específicos */
 #start-button{
     background-image: linear-gradient(0deg, white, gray);
     border: 5px solid #333;
@@ -122,7 +124,7 @@ button:disabled{
 }
 
 
-
+/* Estilo para o contêiner de botões móveis */
 .mobile-buttons-container {
     margin-top: 2px;
     max-width: 300px;
@@ -132,28 +134,29 @@ button:disabled{
     gap: 9px;
 }
 
+/* Estilo para botões móveis */
 .mobile-buttons-container button {
-    width: 100px;
     background-image: linear-gradient(0deg, white, gray);
     box-shadow: 10px 10px 12px  rgba(0, 0, 0, 0.5);
-    border-radius: 50px;
-    border: 5px solid #333;
     font-family: "Press Start 2P", sans-serif;
+    border: 5px solid #333;
+    border-radius: 50px;
     cursor: pointer;
+    width: 100px;
 }
 
+/* Estilo para o texto dentro dos botões móveis */
 .mobile-buttons-container button span {
     color: #000000;
     font-weight: bold;
     font-size: 25px;
-    
     border-radius: 50px;
     text-align: center;
     align-items: center;
     justify-items: center;
 }
 
-
+/* Efeito de hover nos botões móveis */
 .mobile-buttons-container button:hover {
     filter: brightness(0.8);
 }
@@ -163,7 +166,7 @@ button:disabled{
 
 
 
-
+/* Estilos para o grid principal */
 .grid{
     width: 200px;
     height: 400px;
@@ -171,14 +174,15 @@ button:disabled{
     box-shadow: 10px 10px 12px  rgba(0, 0, 0, 0.5);
     display: flex;
     flex-wrap: wrap;
-
 }
 
+/* Estilos para as células do grid */
 .grid div {
     width: 20px;
     height: 20px;
 }
 
+/* Estilo para o contêiner de conteúdo à direita */
 .content-right{
     width: 180px;
     display: flex;
@@ -189,35 +193,53 @@ button:disabled{
     background: linear-gradient(rgb(128, 15, 15), rgba(0, 0, 0, 1));
 }
 
-
+/* Estilo para o título no contêiner de conteúdo à direita */
 .content-right h3 {
     width: 120px;
     height: 100px;
     font-size: 15px;
     margin-top: 20px;
     letter-spacing: 1px;
-    color: rgb(0, 247, 255);
+    color: transparent; /* Torna o texto original transparente */
     border: 5px solid #ffca1d;
-    background-color: black;
+    background-color: black; 
     font-family: "Press Start 2P", sans-serif;
-    box-shadow: 5px 5px 5px 0  rgba(192, 120, 13, 0.5);
+    box-shadow: 5px 5px 5px 0 rgba(192, 120, 13, 0.5);
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 10px;
-    flex-direction: column
+    flex-direction: column;
+}
+
+/* Aplicando cores diferentes ao texto "SCORE:" usando um gradiente */
+.content-right h3::before {
+    content: "SCORE:";
+    background: linear-gradient(to top, rgb(121, 112, 112), rgb(251, 255, 4)); /* Gradiente de texto */
+    -webkit-background-clip: text; 
+    color: transparent; /* Torna o texto original dentro do pseudo-elemento transparente */
+    position: absolute;
 }
 
 
+
+
+
+/* Estilo para a pontuação */
 .score {
     font-size: 10px;
     font-weight: bold;
     margin-top: 5px;
+    font-family: 'Press Start 2P', sans-serif;
+    text-align: center;
+    text-shadow: 2px 2px rgb(71, 71, 64), -2px -2px rgb(65, 92, 94);
     color: white;
 }
 
 
 
+
+/* Estilo para o mini-grid */
 .mini-grid{
     margin-top: 30px;
     width: 120px;
@@ -228,13 +250,14 @@ button:disabled{
     box-shadow: 5px 5px 5px 0  rgba(192, 120, 13, 0.5);
 }
 
+/* Estilo para as células do mini-grid */
 .mini-grid div {
-    border: 2px solid #8a8a8a;
+    border: 1px solid #ffffff;
     width: 20px;
     height: 20px;
 }
 
-
+/* Estilo para o contador de linhas */
 .lines-counter {
     margin-top: 10px;
     align-items: center;
@@ -247,53 +270,50 @@ button:disabled{
     padding: 10px;
 }
 
+
+/* Estilo para o texto no contador de linhas */
 .lines-counter p {
     font-family: 'Press Start 2P', sans-serif;
-    font-size: 15px;
+    font-size: 12px;
     color: #ffe604;
     font-weight: bold;
     margin-top: 10px;
 }
 
+/* Estilo para o número de linhas */
 #lines-count {
     font-size: 28px;
     font-weight: bold;
     font-size: 15px;
 }
 
+
+/* Estilo para as peças pintadas no grid */
 .shapePainted{
     width: 20px;
     height: 20px;
-    border: 1px solid rgb(17, 17, 17);
-    box-shadow: 5px 5px 5px 5px transparent, inset 3px 3px 0 rgba(121, 117, 117, 0.5), inset 0 0 0 2px white;
+    border: 1px solid rgb(0, 0, 0);
     background-color: rgb(0, 0, 0);
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    position: relative;
 }
 
+
+/* Ponto de pixel nas peças pintadas */
 .shapePainted::before {
     content: "";
     display: block;
     width: 4px;
     height: 4px;
     padding: 0.10px 0.10px;
-    background-color: #fff; /* Cor dos pontos de pixel */
+    background-color: #fff;
     position: absolute;
 }
 
 
-/* Estilo para o formato fantasma */
-.ghostShape {
-    width: 20px;
-    height: 20px;
-    border: 1px solid rgb(17, 17, 17);
-    box-shadow: 5px 5px 5px 5px transparent, inset 3px 3px 0 rgba(121, 117, 117, 0.5), inset 0 0 0 2px white;
-    background-color: white; /* Cor branca */
-}
 
 
-
-
-
+/* Estilos de cores */
 .blue{
     background-color: rgb(4, 62, 156); /* Azul */
 }
@@ -320,34 +340,149 @@ button:disabled{
 
 
 
-
-
-
-/* Tema de fundo para dificuldade 1 */
-.theme-1 {
+/* Tema 1 */
+.theme-1-grid {
     background: linear-gradient(0deg, rgb(187, 131, 140), rgb(221, 185, 24));
+    
 }
 
-/* Tema de fundo para dificuldade 2 */
-.theme-2 {
+.theme-1-content-right {
+    border: 10px solid rgb(196, 51, 75);
+    box-shadow: 10px 10px 12px  rgba(255, 251, 0, 0.5);
+    background: linear-gradient(rgb( grey, rgb(255, 51, 1)));
+    
+}
+.theme-1-mini-grid {
+    background-color: rgb(84, 81, 87);
+    margin-top: 30px;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: 5px 5px 5px 0  rgba(255, 0, 0, 0.5);    
+}
+
+
+/* Tema 2 */
+.theme-2-grid {
     background: linear-gradient(0deg, rgb(69, 189, 69), rgb(119, 4, 119));
 }
 
-/* Tema de fundo para dificuldade 3 */
-.theme-3 {
-    background: linear-gradient(15deg, rgb(204, 8, 8), rgb(77, 15, 194), rgb(184, 178, 178));
+.theme-2-content-right {
+    border: 10px solid rgb(30, 255, 0);
+    box-shadow: 10px 10px 12px  rgba(73, 36, 95, 0.5);
+    background: linear-gradient(rgb( black, rgb(104, 77, 201)));
+    
+}
+.theme-2-mini-grid {
+    background-color: rgb(155, 138, 216);
+    margin-top: 30px;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: 5px 5px 5px 0  rgba(0, 0, 0, 0.5);    
 }
 
-/* Tema de fundo para dificuldade 4 */
-.theme-4 {
+
+/* Tema 3 */
+.theme-3-grid {
+    background: linear-gradient(15deg, rgb(184, 107, 107), rgb(3, 42, 168), rgb(184, 178, 178));
+}
+.theme-3-content-right {
+    border: 10px solid rgb(30, 150, 110);
+    box-shadow: 10px 10px 12px  rgba(1, 44, 35, 0.5);
+    background: linear-gradient(rgb( rgb(21, 44, 119), rgb(63, 92, 255)));
+    
+}
+.theme-3-mini-grid {
+    background-color: rgb(24, 71, 75);
+    margin-top: 30px;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: 5px 5px 5px 0  rgba(0, 0, 0, 0.5);    
+}
+
+/* Tema 4 */
+.theme-4-grid {
     background: linear-gradient(15deg, rgb(69, 123, 133), rgb(2, 36, 75));
 }
+.theme-4-content-right {
+    border: 10px solid rgb(0, 0, 0);
+    box-shadow: 10px 10px 12px  rgba(98, 99, 99, 0.5);
+    background: linear-gradient(rgb( rgb(59, 1, 45), rgb(69, 68, 71)));
+    
+}
+.theme-4-mini-grid {
+    background-color: rgb(0, 0, 0);
+    margin-top: 30px;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: 5px 5px 5px 0  rgba(0, 0, 0, 0.5);    
+}
 
-.theme-5 {
-    background: linear-gradient(15deg, rgb(18, 19, 19), rgb(2, 59, 42));
+/* Tema 5 */
+.theme-5-grid {
+    background: linear-gradient(15deg, rgb(109, 7, 7), rgb(2, 36, 75));
+}
+.theme-5-content-right {
+    border: 10px solid rgb(163, 0, 0);
+    box-shadow: 10px 10px 12px  rgba(0, 0, 0, 0.5);
+    background: linear-gradient(rgb( rgb(44, 1, 34), rgb(5, 5, 5)));
+    
+}
+.theme-5-mini-grid {
+    background-image: linear-gradient(15deg, red, black);
+    margin-top: 30px;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: 5px 5px 5px 0  rgba(78, 77, 77, 0.5);    
 }
 
 
+/* Tema 6 */
+.theme-6-grid {
+    background: linear-gradient(50deg, rgb(14, 14, 14), rgb(66, 66, 66, 0.50));
+}
+.theme-6-content-right {
+    border: transparent;
+    box-shadow: 10px 10px 12px  rgba(0, 0, 0, 0.5);
+    background: transparent;
+    
+}
+.theme-6-mini-grid {
+
+    display: none;
+
+}
+
+/* Tema 6 */
+.theme-7-grid {
+    background: linear-gradient(50deg, rgb(0, 95, 51, 0.20), rgba(250, 250, 250, 0.20));
+}
+.theme-7-content-right {
+    border: transparent;
+    box-shadow: 10px 10px 12px  rgba(0, 0, 0, 0.5);
+    background: transparent;
+    
+}
+.theme-7-mini-grid {
+
+    background: transparent;
+    margin-top: 30px;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: 5px 5px 5px 0  rgba(0, 172, 114, 0.5);  
+
+}
 
 
 /*Tema de fundo para a fase da chuva */
@@ -355,7 +490,6 @@ button:disabled{
     position: relative;
     background: linear-gradient(0deg, rgb(0, 0, 0), purple);
 }
-
 .theme-rain::before{
     content: "";
     position: absolute;
@@ -369,20 +503,14 @@ button:disabled{
     opacity: 0.5;
     z-index: 1;
 }
-
-
 .theme-rain .shapePainted {
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
-
-
 .theme-rain-content-right{
     border: 10px solid #6700bb;
     box-shadow: 10px 10px 12px  rgba(198, 9, 255, 0.5);
     background: linear-gradient(rgb(3, 3, 3), rgb(27, 4, 43));
 }
-
-
 .theme-rain-mini-grid {
     background-color: blueviolet;
     margin-top: 30px;
@@ -394,18 +522,14 @@ button:disabled{
 }
 
 
-
-
 /*Tema de fundo para a fase da neve */
 .theme-snow {
     position: relative;
     background: linear-gradient(90deg, #ffffff 10%, #d0d0d0 50%, #ffffff 90%); /* Gradiente para simular neve */
 }
-
 .theme-snow .shapePainted {
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
-
 .theme-snow::before {
     content: "";
     position: absolute;
@@ -419,7 +543,6 @@ button:disabled{
     opacity: 0.5;
     z-index: 1; 
 }
-
 .theme-snow-mini-grid {
     margin-top: 30px;
     width: 120px;
@@ -429,7 +552,6 @@ button:disabled{
     flex-wrap: wrap;
     box-shadow: 5px 5px 5px 0  rgba(10, 255, 214, 0.5);
 }
-
 .theme-snow-content-right{
     border: 10px solid #0417c4;
     background-image: linear-gradient(0deg, white, aqua);
@@ -441,8 +563,7 @@ button:disabled{
 
 
 
-/*Caso específico para responsividade*/
-
+/* Caso específico para responsividade */
 @media(max-width: 990px){
     .mobile-buttons-container{
         display: grid;
@@ -451,7 +572,6 @@ button:disabled{
 
 
 @media (max-width:470px){
-
     .container-right h3{
         width: 120px;
         height: 100px;

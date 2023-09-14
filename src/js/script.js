@@ -11,43 +11,43 @@
 
 */
 
-const gridWidth = 10; // tamanho total de linhas 
-
-const musicThresholds = [500, 1000, 1500]; // Pontuações em que a música deve mudar
+// Configurações do jogo
+let hasWon = false;
+const gridWidth = 10; // Tamanho total de colunas
 let currentMusicIndex = 0; // Índice da música atual
 
 
-const musicA = new Audio("./src/assets/sounds/A-TypeMusic.mp3");
-const musicB = new Audio("./src/assets/sounds/A-TypeMusic(v1.0).mp3");
-const musicC = new Audio("./src/assets/sounds/B-TypeMusic.mp3");
-const musicD = new Audio("./src/assets/sounds/C-TypeMusic.mp3");
-const musicE = new Audio("./src/assets/sounds/TetrisBGM1.mp3");
-const musicF = new Audio("./src/assets/sounds/TetrisBGM1(Fast).mp3");
-const musicG = new Audio("./src/assets/sounds/TetrisBGM2.mp3");
-const musicH = new Audio("./src/assets/sounds/TetrisBGM2(Fast).mp3");
-
+const musicA = new Audio("./src/assets/sounds/music/A-TypeMusic.mp3");
+const musicB = new Audio("./src/assets/sounds/music/A-TypeMusic(v1.0).mp3");
+const musicC = new Audio("./src/assets/sounds/music/B-TypeMusic.mp3");
+const musicD = new Audio("./src/assets/sounds/music/C-TypeMusic.mp3");
+const musicE = new Audio("./src/assets/sounds/music/TetrisBGM1.mp3");
+const musicF = new Audio("./src/assets/sounds/music/TetrisBGM1(Fast).mp3");
+const musicG = new Audio("./src/assets/sounds/music/TetrisBGM2.mp3");
+const musicH = new Audio("./src/assets/sounds/music/TetrisBGM2(Fast).mp3");
+const musicI = new Audio("./src/assets/sounds/music/TetrisBGM3.mp3");
+const musicJ = new Audio("./src/assets/sounds/music/TetrisBGM3(Fast).mp3");
 const completLineAudio = new Audio("./src/assets/sounds/StageClear.mp3");
 const gameOverAudio = new Audio("./src/assets/sounds/GameOver.mp3")
-const freezeAudio = new Audio("./src/assets/sounds/block.mp3");
+const freezeAudio = new Audio("./src/assets/sounds/drop.mp3");
 const moveSound = new Audio("./src/assets/sounds/move-piece.mp3");
 const rotateSound = new Audio("./src/assets/sounds/rotate-piece.mp3");
 
 
-
-function playRotateSound(){
+// Funções para ajustar os sons
+function playRotateSound() {
     rotateSound.playbackRate = 3.50;
     rotateSound.play();
 }
 
-function playMoveSound(){
-    rotateSound.playbackRate = 1.03;
+function playMoveSound() {
+    moveSound.playbackRate = 1.03;
     moveSound.play();
 }
 
-
+// Controles de áudio
 const muteButton = document.getElementById("mute-button");
 const audioIcon = document.getElementById("audio-icon");
-
 let isMuted = false;
 
 
@@ -55,99 +55,27 @@ muteButton.addEventListener("click", () => {
     isMuted = !isMuted; // Inverte o estado de mutado
 
     if (isMuted) {
-      // Desmutar o áudio globalmente
         unmuteAudio();
     } else {
-      // Mutar o áudio globalmente
         muteAudio();
     }
 });
 
 function muteAudio() {
-    // Altere a classe do ícone para "audio-off" (ícone de "mute")
     audioIcon.classList.remove("audio-on");
     audioIcon.classList.add("audio-off");
 
     // Define volume de todas as músicas para 0
-    musicA.volume = 0;
-    musicB.volume = 0;
-    musicC.volume = 0;
-    musicD.volume = 0;
-    musicE.volume = 0;
-    musicF.volume = 0;
-    musicG.volume = 0;
-    musicH.volume = 0;
-
-
+    setMusicVolume(0);
 }
 
 function unmuteAudio() {
-    // Altere a classe do ícone para "audio-on" (ícone de alto-falante)
     audioIcon.classList.remove("audio-off");
     audioIcon.classList.add("audio-on");
 
-    // Restaura o volume de todas as músicas para 1.0 (valor original)
-    musicA.volume = 1.0;
-    musicB.volume = 1.0;
-    musicC.volume = 1.0;
-    musicD.volume = 1.0;
-    musicE.volume = 1.0;
-    musicF.volume = 1.0;
-    musicG.volume = 1.0;
-    musicH.volume = 1.0;
-
+    // Restaura o volume original das músicas
+    setMusicVolume(1.0);
 }
-
-
-
-
-
-let currentMusic = musicA; // Inicialmente, com a música A
-let musicStarted = false; // Flag para verificar se a música já começou
-
-function playBackgroundMusic() {
-    if (!musicStarted) {
-        currentMusic.play();
-        musicStarted = true;
-    }
-}
-
-function playCompleteLineAudio() {
-    completLineAudio.playbackRate = 1.2;
-    completLineAudio.play();
-
-    linesCleared++; // Incrementa o contador de linhas
-    updateLinesCounter(); // Atualiza o contador de linhas
-    
-}
-
-function changeMusic(newMusic) {
-    currentMusic.pause();
-    currentMusic = newMusic;
-    currentMusic.currentTime = 0;
-    currentMusic.play();
-}
-
-function changeMusicAndDifficulty() {
-    // Verifica se a pontuação atingiu um dos limiares
-    if (score >= musicThresholds[currentMusicIndex]) {
-        // Avança para a próxima música (se houver) e aumenta a dificuldade
-        currentMusicIndex++;
-        if (currentMusicIndex < musicThresholds.length) {
-            changeMusic(musicArray[currentMusicIndex]);
-            increaseDifficulty();
-        }
-    }
-}
-
-
-function playPauseSound() {
-    const pauseSound = new Audio("./src/assets/sounds/pause-clear.wav");
-    pauseSound.play();
-}
-
-
-
 
 function setMusicVolume(volume) {
     musicA.volume = volume;
@@ -160,8 +88,6 @@ function setMusicVolume(volume) {
     musicH.volume = volume;
 }
 
-
-
 function setSoundEffects(volume){
     rotateSound.volume = volume;
     moveSound.volume = volume;
@@ -169,13 +95,58 @@ function setSoundEffects(volume){
     freezeAudio.volume = volume;
 }
 
-
-// Ajusta o volume das músicas e efeitos
+// Configura os volumes iniciais
 setMusicVolume(0.5);
 setSoundEffects(0.4);
 
 
-// Formas
+
+
+let currentMusic = musicA; // Inicialmente, com a música A
+let musicStarted = false; // Flag para verificar se a música já começou
+
+// Função para iniciar a música de fundo
+function playBackgroundMusic() {
+    if (!musicStarted) {
+        if (currentMusic.paused) {
+            currentMusic.play();
+            musicStarted = true;
+        }
+    }
+}
+
+
+// Função para trocar a música de fundo
+function changeMusic(newMusic) {
+    if (currentMusic !== newMusic) {
+        currentMusic.pause();
+        currentMusic = newMusic;
+        currentMusic.currentTime = 0;
+        currentMusic.play();
+        musicStarted = true;
+    }
+}
+
+
+function playPauseSound() {
+    const pauseSound = new Audio("./src/assets/sounds/pause-clear.wav");
+    pauseSound.play();
+}
+
+function playCompleteLineAudio() {
+    completLineAudio.playbackRate = 1.2;
+    completLineAudio.play();
+
+    linesCleared++; // Incrementa o contador de linhas
+    updateLinesCounter(); // Atualiza o contador de linhas
+    
+}
+
+
+
+
+
+// Formas das peças do Tetris
 const lShape = [
     // 1° rotação, 2° rotação, 3°rotação, 4°rotação
     [1, 2, gridWidth+1, gridWidth*2+1], 
@@ -215,14 +186,12 @@ const iShape = [
 
 const allShapes = [lShape, zShape, tShape, oShape, iShape];
 
-/*Definição de cores para formas*/
+// Cores das peças
 const colors = ["red", "green", "orange", "yellow", "pink"];
 let currentColor = Math.floor(Math.random() * colors.length);
 let nextColor = colors[currentColor];
 
 
-
-// @1.0 Cálculo para geração aleatória dos formatos
 let currentPosition = 3;
 let currentRotation = 0;
 let randomShape = Math.floor(Math.random() * allShapes.length);
@@ -230,55 +199,7 @@ let currentShape = allShapes[randomShape][currentRotation];
 let $gridSquares = Array.from(document.querySelectorAll(".grid div"));
 
 
-
-
-
-/*Funções para Desenhar, apagar, e congelar*/
-function drawShape(){
-    currentShape.forEach(squareIndex => {
-        $gridSquares[squareIndex + currentPosition].classList.add("shapePainted", `${colors[currentColor]}`);
-    })
-}
-
-drawShape();
-
-function eraseShape(){
-    currentShape.forEach(squareIndex => {
-        $gridSquares[squareIndex + currentPosition].classList.remove("shapePainted", `${colors[currentColor]}`);
-    })
-}
-
-
-function freezeFilled(){
-    if (currentShape.some(squareIndex =>
-        $gridSquares[squareIndex + currentPosition + gridWidth].classList.contains("filled")
-    )) {
-        
-        currentShape.forEach(squareIndex => $gridSquares[squareIndex + currentPosition].classList.add("filled"))
-
-        currentPosition = 3;
-        currentRotation = 0;
-        // @1.0
-        randomShape = nextRandomShape;
-        currentShape = allShapes[randomShape][currentRotation];
-        currentColor = nextColor;
-
-        drawShape();
-        checkIfRowsFilled();
-
-        // para cada vez que um shape for congelado recebe 5pts
-        updateScore(5);
-        displayNextShape();
-        freezeAudio.play();
-        
-        gameOver();
-    }
-}
-
-
-
-
-/*Preview do próximo formato*/
+// Definição dos próximos formatos
 const $miniGridSquares = document.querySelectorAll(".mini-grid div");
 const miniGridWidth = 6;
 const nextPosition = 2;
@@ -293,7 +214,7 @@ const possibleNextShapes = [
 
 let nextRandomShape = Math.floor(Math.random() * possibleNextShapes.length);
 
-
+// Função para exibir o próximo formato
 function displayNextShape(){
     
     // apaga os formatos antigos
@@ -316,32 +237,86 @@ displayNextShape();
 
 
 
+// Função para desenhar a forma atual no grid
+function drawShape(){
+    currentShape.forEach(squareIndex => {
+        $gridSquares[squareIndex + currentPosition].classList.add("shapePainted", `${colors[currentColor]}`);
+    })
+}
+//drawShape();
 
-/*Start,  restart, pause*/
+
+// Função para apagar a forma atual do grid
+function eraseShape(){
+    currentShape.forEach(squareIndex => {
+        $gridSquares[squareIndex + currentPosition].classList.remove("shapePainted", `${colors[currentColor]}`);
+    })
+}
+
+// Função para congelar a forma atual quando atinge o fundo ou outra forma
+function freezeFilled(){
+    if (currentShape.some(squareIndex =>
+        squareIndex + currentPosition + gridWidth >= $gridSquares.length ||
+        $gridSquares[squareIndex + currentPosition + gridWidth].classList.contains("filled")
+    )) {
+        currentShape.forEach(squareIndex => {
+            if ($gridSquares[squareIndex + currentPosition]) { // Verifica se o elemento existe
+                $gridSquares[squareIndex + currentPosition].classList.add("filled");
+            }
+        });
+
+        currentPosition = 3;
+        currentRotation = 0;
+
+        randomShape = nextRandomShape;
+        currentShape = allShapes[randomShape][currentRotation];
+        currentColor = nextColor;
+
+        drawShape();
+        checkIfRowsFilled();
+
+        // Aumenta a pontuação toda vez que uma forma é congelada (5 pontos no momento)
+        updateScore(5);
+        displayNextShape();
+        freezeAudio.play();
+
+        // Verifica se o jogo acabou
+        gameOver();
+    }
+}
+
+
+
+
+
+
+// Inicialização do jogo
 let timeMoveDown = 600;
 let timerId = null;
 const $startStopButton = document.getElementById("start-button") ;
 
+
+// Evento de clique no botão Play/Pause
 $startStopButton.addEventListener("click", ()=>{
     if (timerId){
         pauseGame();
 
-
     } else {
-        timerId = setInterval(moveDown, timeMoveDown);
-
-        playBackgroundMusic();
+        //timerId = setInterval(moveDown, timeMoveDown);
+        resumeGame();
+        //playBackgroundMusic();
     }
 })
 
 const $restartButton = document.getElementById("restart-button");
+
 
 $restartButton.addEventListener("click", ()=>{
     window.location.reload();
 })
 
 
-
+// Função para pausar o jogo
 function pauseGame() {
     if (timerId) {
         clearInterval(timerId);
@@ -350,108 +325,84 @@ function pauseGame() {
         currentMusic.pause();
         musicStarted = false;
 
+        // Pausa a música de fundo, se estiver tocando
+        if (musicStarted) {
+            currentMusic.pause();
+            musicStarted = false;
+        }
+
         playPauseSound();
     }
 }
 
-
-
-
-
-
-/*Funções de movimentos */
-function moveDown(){
-    freezeFilled();
-
-    eraseShape();
-    currentPosition += 10;
-    drawShape();
-    playMoveSound();
-}
-
-function moveLeft(){
-    // @1.2 Verificação para o limite de borda
-    const isEdgeLimit  = currentShape.some((squareIndex) => (squareIndex + currentPosition) % gridWidth === 0)
-    if (isEdgeLimit) return
-
-    const isFilled = currentShape.some(squareIndex => 
-        $gridSquares[squareIndex + currentPosition - 1].classList.contains("filled")
-    )
-    if (isFilled) return
-
-
-    eraseShape();
-    currentPosition--
-    drawShape();
-    playMoveSound();
-}
-
-function moveRight(){
-    // @1.2
-    const isEdgeLimit  = currentShape.some((squareIndex) => (squareIndex + currentPosition) % gridWidth === gridWidth - 1)
-    if (isEdgeLimit) return
-
-
-    const isFilled = currentShape.some(squareIndex => 
-        $gridSquares[squareIndex + currentPosition + 1].classList.contains("filled")
-    )
-    if (isFilled) return
-
-
-    eraseShape();
-    currentPosition++
-    drawShape();
-    playMoveSound();
-}
-
-
-
-function previousRotation(){
-    if (currentRotation === 0){
-        currentRotation = currentShape.length - 1;
-    } else {
-        currentRotation--;
+// Função para retomar o jogo
+function resumeGame() {
+    if (!timerId) {
+        timerId = setInterval(moveDown, timeMoveDown);
+        $startStopButton.textContent = "Pause";
+        
+        // Inicia a música de fundo, se ainda não tiver começado
+        if (!musicStarted) {
+            playBackgroundMusic();
+        }
     }
-
-    currentShape = allShapes[randomShape][currentRotation];
-}
-
-
-function rotateShape(){
-    eraseShape();
-
-    if (currentRotation === currentShape.length - 1) {
-        currentRotation = 0;
-    } else {
-        currentRotation++;
-    }
-
-
-    currentShape = allShapes[randomShape][currentRotation]
-
-    const isLeftEdgeLimit = currentShape.some((squareIndex)=> (squareIndex + currentPosition) % gridWidth === 0 )
-    const isRightEdgeLimit = currentShape.some((squareIndex)=> (squareIndex + currentPosition) % gridWidth === gridWidth-1 )
-
-    if (isLeftEdgeLimit && isRightEdgeLimit){
-        previousRotation();
-    }
-
-
-    const isFilled  = currentShape.some(squareIndex =>
-        $gridSquares[squareIndex + currentPosition].classList.contains("filled")
-    )
-    if (isFilled) {
-        previousRotation();
-    }
-
-
-    drawShape();
-    playRotateSound();
 }
 
 
 
-/*Ao preencher uma linha completa*/
+
+
+// Limite de pontuação de vitória
+const winScore = 8000;
+
+// Verificar a vitória
+function checkWinCondition() {
+    if (score >= winScore) {
+        gameWin();
+    }
+}
+
+
+
+// Função para lidar com a vitória do jogador
+function gameWin() {
+    if (!hasWon) {
+        clearInterval(timerId);
+        timerId = null;
+        $startStopButton.disabled = true;
+
+        // Limpa o grid imediatamente
+        $gridSquares.forEach(square => {
+            square.classList.remove("filled", "shapePainted", `${colors[currentColor]}`);
+        });
+
+        // Limpa todas as peças completamente
+        for (let row = 0; row < gridWidth; row++) {
+            for (let col = 0; col < gridWidth; col++) {
+                const index = row * gridWidth + col;
+                $gridSquares[index].classList.remove("filled", "shapePainted", `${colors[currentColor]}`);
+            }
+        }
+
+        playVictoryMusic();
+        
+        $score.innerHTML += "<br />" + "<br />" + "VICTORY!";
+        hasWon = true; // Defina hasWon como true para evitar a reprodução repetida da música de vitória
+    }
+}
+
+// Cria uma função para reproduzir a música de vitória
+function playVictoryMusic() {
+    // Pausa a música atual
+    currentMusic.pause();
+
+    const victoryAudio = new Audio("./src/assets/sounds/TetrisStats.mp3");
+    victoryAudio.play();
+}
+
+
+
+// Função para verificar se uma linha foi preenchida completamente
 let $grid = document.querySelector(".grid");
 
 function checkIfRowsFilled(){
@@ -485,26 +436,26 @@ function checkIfRowsFilled(){
 
 
 
+
 // variável para rastrear o número de linhas completadas
 let linesCleared = 0;
 
+
+// Função para atualizar o contador de linhas
 function updateLinesCounter() {
     const $linesCount = document.getElementById('lines-count');
     $linesCount.textContent = linesCleared;
 }
 
 
-
-
-
-/* Função para atualizar a pontuação e a dificuldade*/
+// Função para atualizar a pontuação e a dificuldade
 const $score = document.querySelector(".score");
 let score = 0;
 
 function updateScore(updateValue){
     score += updateValue;
     $score.textContent = score;
-
+    checkWinCondition();
     
     // Dificuldades conforme pontuação
     clearInterval(timerId)
@@ -516,58 +467,102 @@ function updateScore(updateValue){
 
 
 
+
+
+// Função para alterar a música de fundo e a dificuldade do jogo
 function changeMusicAndDifficulty() {
+
     if (score > 500 && score <= 1200 && currentMusic !== musicB) {
         timeMoveDown = 500;
         changeMusic(musicB);
+        currentMusic.loop = true;
         applyTheme(1);
         
 
     } else if (score > 1200 && score <= 1500 && currentMusic !== musicC) {
-        timeMoveDown = 400;
+        timeMoveDown = 495;
         changeMusic(musicC);
+        currentMusic.loop = true;
         applyTheme(2);
         
 
-    } else if (1500 < score && score <= 1900 && currentMusic !== musicD) {
-        timeMoveDown = 250;
+    } else if (1500 < score && score <= 1950 && currentMusic !== musicD) {
+        timeMoveDown = 440;
         changeMusic(musicD);
+        currentMusic.loop = true;
         applyTheme(3);
         
-    } else if (1900 < score && score <= 2300 && currentMusic !== musicE) {
-        timeMoveDown < 150;
+    } else if (1950 < score && score <= 2300 && currentMusic !== musicE) {
+        timeMoveDown < 435;
         changeMusic(musicE);
+        currentMusic.loop = true;
         applyTheme(4);
 
-    } else if (2300 < score && score <= 5900 && currentMusic !== musicF) {
-        timeMoveDown < 100;
+    } else if (2300 < score && score <= 2900 && currentMusic !== musicF) {
+        timeMoveDown < 400;
         changeMusic(musicF);
+        currentMusic.loop = true;
         applyTheme(5);
 
-    } else if (5900 < score && score <= 9900 && currentMusic !== musicG) {
-        timeMoveDown < 100;
+    } else if (2900 < score && score <= 4000 && currentMusic !== musicG) {
+        timeMoveDown < 430;
         changeMusic(musicG);
-        applySnowTheme();
+        currentMusic.loop = true;
+        applyTheme(6);
 
-    } else if (9900 < score && score <= 10900 && currentMusic !== musicG){
-        timeMoveDown < 90;
-        changeMusic(musicG);
+    } else if (4000 < score && score <= 4900 && currentMusic !== musicH){
+        timeMoveDown < 420;
+        changeMusic(musicH);
+        currentMusic.loop = true;
+        applyTheme(7);
+        
+        
+    } else if (4900 < score && score <= 6500 && currentMusic !== musicI){
+        timeMoveDown < 400;
+        changeMusic(musicI);
+        currentMusic.loop = true;
         applyRainTheme();
+
+    } else if (6500 < score && score <= 6900 && currentMusic !== musicJ) {
+        timeMoveDown < 350;
+        changeMusic(musicJ);
+        currentMusic.loop = true;
+        applySnowTheme();
     }
+
 }
 
-/* Temas para cada dificuldade */
+
+
 function applyTheme(themeNumber) {
-    // Remove todas as classes de tema do elemento .grid
+    // Remove todas as classes de tema do elemento .grid, .mini-grid e .content-right
     const grid = document.querySelector('.grid');
-    grid.classList.remove('theme-1', 'theme-2', 'theme-3', 'theme-4');
+    const miniGrid = document.querySelector('.mini-grid');
+    const contentRight = document.querySelector('.content-right');
+    
+    grid.classList.remove(
+        'theme-1-grid', 'theme-2-grid', 'theme-3-grid', 'theme-4-grid', 'theme-5-grid'
+    );
+    
+    miniGrid.classList.remove(
+        'theme-1-mini-grid', 'theme-2-mini-grid', 'theme-3-mini-grid', 'theme-4-mini-grid', 'theme-5-mini-grid'
+    );
 
-    // Aplica a classe de tema com base na dificuldade
-    grid.classList.add(`theme-${themeNumber}`);
+    contentRight.classList.remove(
+        'theme-1-content-right', 'theme-2-content-right', 'theme-3-content-right', 'theme-4-content-right', 'theme-5-content-right'
+    );
+
+    // Aplica a classe de tema com base no número do tema
+    grid.classList.add(`theme-${themeNumber}-grid`);
+    miniGrid.classList.add(`theme-${themeNumber}-mini-grid`);
+    contentRight.classList.add(`theme-${themeNumber}-content-right`);
 
 }
 
-/* Tema da chuva */
+
+
+
+
 function applyRainTheme() {
     const grid = document.querySelector('.grid');
     grid.classList.add('theme-rain');
@@ -584,8 +579,6 @@ function applyRainTheme() {
 }
 
 
-
-/* Tema da neve */
 function applySnowTheme() {
     const grid = document.querySelector('.grid');
     grid.classList.add('theme-snow');
@@ -603,8 +596,7 @@ function applySnowTheme() {
 
 
 
-
-/* Função game over*/
+// Função para lidar com o fim do jogo
 function gameOver(){
     if (currentShape.some(squareIndex =>
         $gridSquares[squareIndex + currentPosition].classList.contains("filled")
@@ -614,6 +606,7 @@ function gameOver(){
         timerId = null;
         $startStopButton.disabled = true;
 
+        // Pausa a música de fundo, se estiver tocando
         if (musicStarted) {
             currentMusic.pause();
             musicStarted = false;
@@ -627,8 +620,10 @@ function gameOver(){
 
 
 
-// Evento de cliques
+
+// Função para manipular eventos de teclado
 document.addEventListener("keydown", controlKeyBoard);
+
 
 function controlKeyBoard(event){
     if (timerId){
@@ -647,7 +642,96 @@ function controlKeyBoard(event){
 
 }
 
-/*Caso mobile*/
+
+// Funções para movimentação das peças
+function moveDown(){
+    freezeFilled();
+
+
+    eraseShape();
+    currentPosition += gridWidth;
+    drawShape();
+    playMoveSound();
+}
+
+
+function moveLeft(){
+    // Verificação para o limite de borda
+    const isEdgeLimit  = currentShape.some((squareIndex) => (squareIndex + currentPosition) % gridWidth === 0)
+    if (isEdgeLimit) return
+
+    const isFilled = currentShape.some(squareIndex => 
+        $gridSquares[squareIndex + currentPosition - 1].classList.contains("filled")
+    )
+    if (isFilled) return
+
+
+    eraseShape();
+    currentPosition--
+    drawShape();
+    playMoveSound();
+}
+
+
+function moveRight(){
+    const isEdgeLimit  = currentShape.some((squareIndex) => (squareIndex + currentPosition) % gridWidth === gridWidth - 1)
+    if (isEdgeLimit) return
+
+
+    const isFilled = currentShape.some(squareIndex => 
+        $gridSquares[squareIndex + currentPosition + 1].classList.contains("filled")
+    )
+    if (isFilled) return
+
+    eraseShape();
+    currentPosition++
+    drawShape();
+    playMoveSound();
+}
+
+
+function previousRotation(){
+    if (currentRotation === 0){
+        currentRotation = currentShape.length - 1;
+    } else {
+        currentRotation--;
+    }
+
+    currentShape = allShapes[randomShape][currentRotation];
+}
+
+
+function rotateShape(){
+    eraseShape();
+
+    if (currentRotation === currentShape.length - 1) {
+        currentRotation = 0;
+    } else {
+        currentRotation++;
+    }
+    currentShape = allShapes[randomShape][currentRotation]
+
+    const isLeftEdgeLimit = currentShape.some((squareIndex)=> (squareIndex + currentPosition) % gridWidth === 0 )
+    const isRightEdgeLimit = currentShape.some((squareIndex)=> (squareIndex + currentPosition) % gridWidth === gridWidth-1 )
+
+    if (isLeftEdgeLimit && isRightEdgeLimit){
+        previousRotation();
+    }
+
+    const isFilled  = currentShape.some(squareIndex =>
+        $gridSquares[squareIndex + currentPosition].classList.contains("filled")
+    )
+    if (isFilled) {
+        previousRotation();
+    }
+
+    drawShape();
+    playRotateSound();
+}
+
+
+
+/* Controle Mobile */
 const isMobile = window.matchMedia('(max-width: 990px)').matches;
 
 

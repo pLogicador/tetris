@@ -291,7 +291,7 @@ function freezeFilled(){
 
 
 // Inicialização do jogo
-let timeMoveDown = 600;
+let timeMoveDown = 500;
 let timerId = null;
 const $startStopButton = document.getElementById("start-button") ;
 
@@ -353,7 +353,7 @@ function resumeGame() {
 
 
 // Limite de pontuação de vitória
-const winScore = 8000;
+const winScore = 9000;
 
 // Verificar a vitória
 function checkWinCondition() {
@@ -428,7 +428,7 @@ function checkIfRowsFilled(){
             $gridSquares = squareRemoved.concat($gridSquares);
             $gridSquares.forEach(square => $grid.appendChild(square));
         
-            updateScore(50);
+            updateScore(20);
             playCompleteLineAudio();
         }
     }
@@ -472,64 +472,54 @@ function updateScore(updateValue){
 // Função para alterar a música de fundo e a dificuldade do jogo
 function changeMusicAndDifficulty() {
 
-    if (score > 500 && score <= 1200 && currentMusic !== musicB) {
-        timeMoveDown = 400;
+    if (score > 500 && score <= 1500 && currentMusic !== musicB) {
+        timeMoveDown = 290;
         changeMusic(musicB);
-        currentMusic.loop = true;
         applyTheme(1);
-        
 
-    } else if (score > 1200 && score <= 1500 && currentMusic !== musicC) {
-        timeMoveDown = 390;
+    } else if (score > 1500 && score <= 2000 && currentMusic !== musicC) {
+        timeMoveDown = 320;
         changeMusic(musicC);
-        currentMusic.loop = true;
         applyTheme(2);
-        
 
-    } else if (1500 < score && score <= 1950 && currentMusic !== musicD) {
+    } else if (2000 < score && score <= 3950 && currentMusic !== musicD) {
         timeMoveDown = 250;
         changeMusic(musicD);
-        currentMusic.loop = true;
         applyTheme(3);
         
-    } else if (1950 < score && score <= 2300 && currentMusic !== musicE) {
-        timeMoveDown < 235;
+    } else if (3950 < score && score <= 2500 && currentMusic !== musicE) {
+        timeMoveDown < 220;
         changeMusic(musicE);
-        currentMusic.loop = true;
         applyTheme(4);
 
-    } else if (2300 < score && score <= 2900 && currentMusic !== musicF) {
-        timeMoveDown < 255;
+    } else if (2500 < score && score <= 2900 && currentMusic !== musicF) {
+        timeMoveDown < 225;
         changeMusic(musicF);
-        currentMusic.loop = true;
         applyTheme(5);
 
     } else if (2900 < score && score <= 4000 && currentMusic !== musicG) {
-        timeMoveDown < 230;
+        timeMoveDown < 210;
         changeMusic(musicG);
-        currentMusic.loop = true;
         applyTheme(6);
 
-    } else if (4000 < score && score <= 4900 && currentMusic !== musicH){
-        timeMoveDown < 220;
+    } else if (4000 < score && score <= 4922 && currentMusic !== musicH){
+        timeMoveDown < 200;
         changeMusic(musicH);
-        currentMusic.loop = true;
         applyTheme(7);
         
         
-    } else if (4900 < score && score <= 6500 && currentMusic !== musicI){
+    } else if (4922 < score && score <= 6900 && currentMusic !== musicI){
         timeMoveDown < 145;
         changeMusic(musicI);
-        currentMusic.loop = true;
         applyRainTheme();
 
-    } else if (6500 < score && score <= 6900 && currentMusic !== musicJ) {
+    } else if (6900 < score && score <= 7900 && currentMusic !== musicJ) {
         timeMoveDown < 90;
         changeMusic(musicJ);
-        currentMusic.loop = true;
         applySnowTheme();
     }
-
+    
+    currentMusic.loop = true; // Define a música atual para tocar infinitamente
 }
 
 

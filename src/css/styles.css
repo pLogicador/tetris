@@ -49,9 +49,6 @@ body {
 
 
 
-
-
-
 /* Estilo para o contêiner principal */
 .container {
     padding: 16px;
@@ -84,6 +81,7 @@ body {
     margin-top: 5px;
     font-size: 10px;
 }
+
 
 /* Estilo para os botões */
 .buttons-container button {
@@ -252,7 +250,7 @@ button:disabled{
 
 /* Estilo para as células do mini-grid */
 .mini-grid div {
-    border: 1px solid #ffffff;
+    border: 1px solid #555555;
     width: 20px;
     height: 20px;
 }
@@ -489,6 +487,7 @@ button:disabled{
 .theme-rain {
     position: relative;
     background: linear-gradient(0deg, rgb(0, 0, 0), purple);
+    z-index: 1;
 }
 .theme-rain::before{
     content: "";
@@ -501,7 +500,7 @@ button:disabled{
     background-repeat: repeat;
     background-size: cover;
     opacity: 0.5;
-    z-index: 1;
+    z-index: -1;
 }
 .theme-rain .shapePainted {
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
@@ -525,7 +524,8 @@ button:disabled{
 /*Tema de fundo para a fase da neve */
 .theme-snow {
     position: relative;
-    background: linear-gradient(90deg, #ffffff 10%, #d0d0d0 50%, #ffffff 90%); /* Gradiente para simular neve */
+    background: linear-gradient(90deg, #ffffff 10%, #d0d0d0 50%, #ffffff 90%);
+    z-index: 1; 
 }
 .theme-snow .shapePainted {
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
@@ -541,7 +541,7 @@ button:disabled{
     background-repeat: repeat;
     background-size: cover;
     opacity: 0.5;
-    z-index: 1; 
+    z-index: -1; 
 }
 .theme-snow-mini-grid {
     margin-top: 30px;

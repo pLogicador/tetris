@@ -473,52 +473,52 @@ function updateScore(updateValue){
 function changeMusicAndDifficulty() {
 
     if (score > 500 && score <= 1500 && currentMusic !== musicB) {
-        timeMoveDown = 290;
+        timeMoveDown = 395;
         changeMusic(musicB);
         applyTheme(1);
 
     } else if (score > 1500 && score <= 2000 && currentMusic !== musicC) {
-        timeMoveDown = 320;
+        timeMoveDown = 250;
         changeMusic(musicC);
         applyTheme(2);
 
-    } else if (2000 < score && score <= 3950 && currentMusic !== musicD) {
-        timeMoveDown = 250;
+    } else if (2000 < score && score <= 2950 && currentMusic !== musicD) {
+        timeMoveDown = 240;
         changeMusic(musicD);
         applyTheme(3);
         
-    } else if (3950 < score && score <= 2500 && currentMusic !== musicE) {
-        timeMoveDown < 220;
+    } else if (2950 < score && score <= 3500 && currentMusic !== musicE) {
+        timeMoveDown < 235;
         changeMusic(musicE);
         applyTheme(4);
 
-    } else if (2500 < score && score <= 2900 && currentMusic !== musicF) {
-        timeMoveDown < 225;
+    } else if (3500 < score && score <= 3700 && currentMusic !== musicF) {
+        timeMoveDown < 220;
         changeMusic(musicF);
         applyTheme(5);
 
-    } else if (2900 < score && score <= 4000 && currentMusic !== musicG) {
+    } else if (3700 < score && score <= 4000 && currentMusic !== musicG) {
         timeMoveDown < 210;
         changeMusic(musicG);
         applyTheme(6);
 
-    } else if (4000 < score && score <= 4922 && currentMusic !== musicH){
+    } else if (4000 < score && score <= 5022 && currentMusic !== musicH){
         timeMoveDown < 200;
         changeMusic(musicH);
         applyTheme(7);
         
         
-    } else if (4922 < score && score <= 6900 && currentMusic !== musicI){
+    } else if (5022 < score && score <= 6000 && currentMusic !== musicI){
         timeMoveDown < 145;
         changeMusic(musicI);
         applyRainTheme();
 
-    } else if (6900 < score && score <= 7900 && currentMusic !== musicJ) {
+    } else if (6000 < score && score <= 7000 && currentMusic !== musicJ) {
         timeMoveDown < 90;
         changeMusic(musicJ);
         applySnowTheme();
     }
-    
+
     currentMusic.loop = true; // Define a música atual para tocar infinitamente
 }
 
@@ -548,8 +548,6 @@ function applyTheme(themeNumber) {
     contentRight.classList.add(`theme-${themeNumber}-content-right`);
 
 }
-
-
 
 
 

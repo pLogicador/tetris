@@ -6,9 +6,10 @@
 }
 
 /* Estilo geral do corpo */
-body {
-    overflow: hidden;
+html, body {
     margin: 0;
+    padding: 0;
+    overflow: hidden;
     background-image: linear-gradient(20deg, rgb(48, 45, 45), rgb(136, 133, 136), rgb(0, 0, 0));
     font-family: 'Arial', sans-serif;
 }
@@ -128,8 +129,8 @@ button:disabled{
     max-width: 300px;
     display: none;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 50px 50px;
-    gap: 9px;
+    grid-template-rows: 47px 50px;
+    gap: 4%;
 }
 
 /* Estilo para botões móveis */
@@ -138,9 +139,10 @@ button:disabled{
     box-shadow: 10px 10px 12px  rgba(0, 0, 0, 0.5);
     font-family: "Press Start 2P", sans-serif;
     border: 5px solid #333;
-    border-radius: 50px;
     cursor: pointer;
-    width: 100px;
+    width: 55px;
+    border-radius: 50%;
+    height: 45px;
 }
 
 /* Estilo para o texto dentro dos botões móveis */
@@ -152,6 +154,8 @@ button:disabled{
     text-align: center;
     align-items: center;
     justify-items: center;
+    line-height: 35px;
+    
 }
 
 /* Efeito de hover nos botões móveis */
@@ -213,26 +217,23 @@ button:disabled{
 /* Aplicando cores diferentes ao texto "SCORE:" usando um gradiente */
 .content-right h3::before {
     content: "SCORE:";
-    background: linear-gradient(to top, rgb(121, 112, 112), rgb(251, 255, 4)); /* Gradiente de texto */
+    background: linear-gradient(to top, rgb(121, 112, 112), rgb(251, 255, 4)); 
     -webkit-background-clip: text; 
     color: transparent; /* Torna o texto original dentro do pseudo-elemento transparente */
     position: absolute;
 }
 
-
-
-
-
 /* Estilo para a pontuação */
 .score {
     font-size: 10px;
-    font-weight: bold;
     margin-top: 5px;
-    font-family: 'Press Start 2P', sans-serif;
-    text-align: center;
-    text-shadow: 2px 2px rgb(71, 71, 64), -2px -2px rgb(65, 92, 94);
     color: white;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Press Start 2P', sans-serif;
+    text-shadow: 2px 2px rgb(71, 71, 64), -2px -2px rgb(65, 92, 94);
 }
+
 
 
 
@@ -272,22 +273,33 @@ button:disabled{
 /* Estilo para o texto no contador de linhas */
 .lines-counter p {
     font-family: 'Press Start 2P', sans-serif;
-    font-size: 12px;
-    color: #ffe604;
+    font-size: 15px;
+    color: transparent;
     font-weight: bold;
+    background: linear-gradient(to top, rgb(121, 112, 112), rgb(251, 255, 4));
+    -webkit-background-clip: text;
     margin-top: 10px;
+    text-shadow: none;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
+
 
 /* Estilo para o número de linhas */
 #lines-count {
     font-size: 28px;
     font-weight: bold;
     font-size: 15px;
+    color: #fffdfd;
+    text-shadow: 2px 2px rgb(71, 71, 64), -2px -2px rgb(65, 92, 94);
 }
 
 
-/* Estilo para as peças pintadas no grid */
 
+
+
+/* Estilo para as peças pintadas no grid */
 .shapePainted{
     width: 20px;
     height: 20px;
@@ -303,22 +315,18 @@ button:disabled{
     display: block;
     width: 17px; /*5px*/
     height: 17px; /*5px*/
-    padding: 0.10px 0.10px;
-    background-image: linear-gradient(45deg,rgba(255, 255, 255, 0.50), rgba(2, 2, 2, 0.10));
+    padding: 1.10px 1.10px 1.10px;
+    background-image: linear-gradient(0deg,rgba(19, 19, 19, 0.3), rgba(255, 255, 255, 0.3));
     box-shadow: 
-        0px 0px 2px rgba(0, 0, 0, 0.5), /* Sombra superior */
-        2px 2px 2px rgba(0, 0, 0, 0.5), /* Sombra direita */
-        -2px -2px 2px rgba(255, 255, 255, 0.5), /* Sombra esquerda */
-        2px 2px 2px rgba(255, 255, 255, 0.5) inset, /* Sombra interna direita */
-        -2px -2px 2px rgba(0, 0, 0, 0.5) inset; /* Sombra interna esquerda */
+        1px 1px 5px rgba(98, 168, 153, 0.9), /* Sombra superior */
+        4px 4px 4px rgba(0, 0, 0, 0.9), /* Sombra direita */
+        -0px -0px 3px rgba(255, 255, 255, 0.9), /* Sombra esquerda */
+        -1px 1px 0px rgba(245, 245, 245, 0.9) inset, /* Sombra interna direita */
+        1px 1px 1px rgba(255, 255, 255, 0.9) inset, /* Sombra interna direita */
+        -1px -1px 2px rgba(255, 255, 255, 0.0) inset; /* Sombra interna esquerda */
     position: relative;
     
 }
-
-
-
-
-
 
 
 
@@ -571,9 +579,6 @@ button:disabled{
 
 
 
-
-
-
 /* Caso específico para responsividade */
 @media(max-width: 990px){
     .mobile-buttons-container{
@@ -609,10 +614,10 @@ button:disabled{
     }
 }
 
-/* Estilos responsivos para dispositivos móveis */
+/* Estilos responsivos para dispositivos móveis *//*
 @media screen and (max-width: 768px) {
     #audio-container {
         top: 1px; 
         left: 9%; 
     }
-}
+}*/

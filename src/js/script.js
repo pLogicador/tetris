@@ -358,8 +358,6 @@ function resumeGame() {
 
 
 
-
-
 // Limite de pontuação de vitória
 const winScore = 9000;
 
@@ -370,8 +368,6 @@ function checkWinCondition() {
     }
 }
 
-
-
 // Função para lidar com a vitória do jogador
 function gameWin() {
     if (!hasWon) {
@@ -381,16 +377,20 @@ function gameWin() {
 
         // Limpa o grid imediatamente
         $gridSquares.forEach(square => {
-            square.classList.remove("filled", "shapePainted", `${colors[currentColor]}`);
+            square.classList.remove("filled", "shapePainted");
         });
 
         // Limpa todas as peças completamente
+        /*
         for (let row = 0; row < gridWidth; row++) {
             for (let col = 0; col < gridWidth; col++) {
                 const index = row * gridWidth + col;
                 $gridSquares[index].classList.remove("filled", "shapePainted", `${colors[currentColor]}`);
             }
-        }
+        }*/
+
+        // Define hasWon como true para evitar a reprodução repetida da música de vitória
+        hasWon = true;
 
         playVictoryMusic();
         
@@ -407,6 +407,36 @@ function playVictoryMusic() {
     const victoryAudio = new Audio("./src/assets/sounds/TetrisStats.mp3");
     victoryAudio.play();
 }
+
+
+// Função para lidar com o fim do jogo
+function gameOver(){
+    if (currentShape.some(squareIndex =>
+        $gridSquares[squareIndex + currentPosition].classList.contains("filled")
+    )) {
+        updateScore(-0); //13
+        clearInterval(timerId);
+        timerId = null;
+        $startStopButton.disabled = true;
+
+        
+
+        // Pausa a música de fundo, se estiver tocando
+        if (musicStarted) {
+            currentMusic.pause();
+            musicStarted = false;
+        }
+
+        gameOverAudio.play();
+        $score.innerHTML += "<br />" + "<br />" + "GAMER OVER";
+    };
+}
+
+
+
+
+
+
 
 
 
@@ -443,8 +473,6 @@ function checkIfRowsFilled(){
 }
 
 
-
-
 // variável para rastrear o número de linhas completadas
 let linesCleared = 0;
 
@@ -472,6 +500,7 @@ function updateScore(updateValue){
     timerId = setInterval(moveDown, timeMoveDown);
 
 }
+
 
 
 
@@ -512,13 +541,13 @@ function changeMusicAndDifficulty() {
         applyTheme(6);
 
     } else if (4000 < score && score <= 5022 && currentMusic !== musicH){
-        timeMoveDown < 200;
+        timeMoveDown < 205;
         changeMusic(musicH);
         applyTheme(7);
         
         
     } else if (5022 < score && score <= 6000 && currentMusic !== musicI){
-        timeMoveDown < 145;
+        timeMoveDown < 150;
         changeMusic(musicI);
         applyRainTheme();
 
@@ -530,6 +559,8 @@ function changeMusicAndDifficulty() {
 
     currentMusic.loop = true; // Define a música atual para tocar infinitamente
 }
+
+
 
 
 
@@ -555,9 +586,7 @@ function applyTheme(themeNumber) {
     grid.classList.add(`theme-${themeNumber}-grid`);
     miniGrid.classList.add(`theme-${themeNumber}-mini-grid`);
     contentRight.classList.add(`theme-${themeNumber}-content-right`);
-
 }
-
 
 
 function applyRainTheme() {
@@ -593,26 +622,6 @@ function applySnowTheme() {
 
 
 
-// Função para lidar com o fim do jogo
-function gameOver(){
-    if (currentShape.some(squareIndex =>
-        $gridSquares[squareIndex + currentPosition].classList.contains("filled")
-    )) {
-        updateScore(-13);
-        clearInterval(timerId);
-        timerId = null;
-        $startStopButton.disabled = true;
-
-        // Pausa a música de fundo, se estiver tocando
-        if (musicStarted) {
-            currentMusic.pause();
-            musicStarted = false;
-        }
-
-        gameOverAudio.play();
-        $score.innerHTML += "<br />" + "<br />" + "GAMER OVER";
-    };
-}
 
 
 
@@ -642,6 +651,9 @@ function controlKeyBoard(event){
 
 // Funções para movimentação das peças
 function moveDown(){
+    // Verifica se o jogo já foi vencido para parar
+    if (hasWon) return;
+
     freezeFilled();
 
 
@@ -653,6 +665,8 @@ function moveDown(){
 
 
 function moveLeft(){
+    if (hasWon) return;
+
     // Verificação para o limite de borda
     const isEdgeLimit  = currentShape.some((squareIndex) => (squareIndex + currentPosition) % gridWidth === 0)
     if (isEdgeLimit) return
@@ -671,6 +685,9 @@ function moveLeft(){
 
 
 function moveRight(){
+    if (hasWon) return;
+
+
     const isEdgeLimit  = currentShape.some((squareIndex) => (squareIndex + currentPosition) % gridWidth === gridWidth - 1)
     if (isEdgeLimit) return
 
@@ -699,6 +716,8 @@ function previousRotation(){
 
 
 function rotateShape(){
+    if (hasWon) return;
+
     eraseShape();
 
     if (currentRotation === currentShape.length - 1) {

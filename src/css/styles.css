@@ -61,11 +61,13 @@ html, body {
     height: 100vh;
     transform: perspective(900px) rotateX(10deg);
     overflow: hidden;
+    
 }
 
 
 /* Estilo para o contêiner de conteúdo */
 .content-container{
+    
     display: flex;
     border: 5px solid #1b1a1a;
     background-color: #000000;
@@ -130,7 +132,7 @@ button:disabled{
     display: none;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 60px 50px;
-    gap: 10%;
+    gap: 20%;
 }
 
 /* Estilo para botões móveis */
@@ -141,8 +143,8 @@ button:disabled{
     border: 5px solid #333;
     cursor: pointer;
     width: 60px;
-    border-radius: 50%;
     height: 60px;
+    border-radius: 50%;
 }
 
 /* Estilo para o texto dentro dos botões móveis */

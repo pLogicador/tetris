@@ -196,10 +196,6 @@ let nextColor = colors[currentColor];
 
 
 
-
-
-
-
 let currentPosition = 3;
 let currentRotation = 0;
 let randomShape = Math.floor(Math.random() * allShapes.length);
@@ -240,8 +236,6 @@ function displayNextShape(){
 }
 
 displayNextShape();
-
-
 
 
 
@@ -292,8 +286,6 @@ function freezeFilled(){
         gameOver();
     }
 }
-
-
 
 
 
@@ -438,7 +430,8 @@ function gameOver(){
 
 
 
-
+// Variável global para rastrear o número de linhas consecutivas que o jogador limpou
+let consecutiveLinesCleared = 0;
 
 // Função para verificar se uma linha foi preenchida completamente
 let $grid = document.querySelector(".grid");
@@ -467,6 +460,18 @@ function checkIfRowsFilled(){
             $gridSquares.forEach(square => $grid.appendChild(square));
         
             updateScore(20);
+
+
+            // Verifica se o jogador limpou 3 linhas consecutivas
+            consecutiveLinesCleared++;
+            if (consecutiveLinesCleared === 4) {
+                updateScore(50); // Concede 30 pontos extras por limpar 3 linhas consecutivas
+                consecutiveLinesCleared = 0; // Reinicia o contador de linhas consecutivas
+            }
+
+
+
+
             playCompleteLineAudio();
         }
     }

@@ -329,7 +329,7 @@ function pauseGame() {
     if (timerId) {
         clearInterval(timerId);
         timerId = null;
-        $startStopButton.textContent = "Play";
+        $startStopButton.textContent = "PLAY";
         currentMusic.pause();
         musicStarted = false;
 
@@ -347,7 +347,7 @@ function pauseGame() {
 function resumeGame() {
     if (!timerId) {
         timerId = setInterval(moveDown, timeMoveDown);
-        $startStopButton.textContent = "Pause";
+        $startStopButton.textContent = "PAUSE";
         
         // Inicia a música de fundo, se ainda não tiver começado
         if (!musicStarted) {
@@ -428,7 +428,7 @@ function gameOver(){
         }
 
         gameOverAudio.play();
-        $score.innerHTML += "<br />" + "<br />" + "GAMER OVER";
+        $score.innerHTML += "<br />" + "GAMER OVER";
     };
 }
 
@@ -503,61 +503,82 @@ function updateScore(updateValue){
 
 
 
-
+// Nível atual
+let currentLevel = 1;
 
 
 // Função para alterar a música de fundo e a dificuldade do jogo
 function changeMusicAndDifficulty() {
+    let newLevel = currentLevel; // Mantém o nível atual
 
     if (score > 500 && score <= 1500 && currentMusic !== musicB) {
         timeMoveDown = 395;
         changeMusic(musicB);
         applyTheme(1);
+        newLevel = 2;
         
 
     } else if (score > 1500 && score <= 2000 && currentMusic !== musicC) {
         timeMoveDown = 250;
         changeMusic(musicC);
         applyTheme(2);
+        newLevel = 3;
 
     } else if (2000 < score && score <= 2950 && currentMusic !== musicD) {
         timeMoveDown = 240;
         changeMusic(musicD);
         applyTheme(3);
+        newLevel = 4;
         
     } else if (2950 < score && score <= 3500 && currentMusic !== musicE) {
         timeMoveDown < 235;
         changeMusic(musicE);
         applyTheme(4);
+        newLevel = 5;
 
     } else if (3500 < score && score <= 3700 && currentMusic !== musicF) {
         timeMoveDown < 220;
         changeMusic(musicF);
         applyTheme(5);
+        newLevel = 6;
 
     } else if (3700 < score && score <= 4000 && currentMusic !== musicG) {
         timeMoveDown < 210;
         changeMusic(musicG);
         applyTheme(6);
+        newLevel = 7;
 
     } else if (4000 < score && score <= 5022 && currentMusic !== musicH){
         timeMoveDown < 205;
         changeMusic(musicH);
         applyTheme(7);
+        newLevel = 8;
         
         
     } else if (5022 < score && score <= 6000 && currentMusic !== musicI){
         timeMoveDown < 150;
         changeMusic(musicI);
         applyRainTheme();
+        newLevel = 9;
 
     } else if (6000 < score && score <= 7000 && currentMusic !== musicJ) {
         timeMoveDown < 100;
         changeMusic(musicJ);
         applySnowTheme();
+        newLevel = 10;
+    }
+
+    if (newLevel > currentLevel) {
+        // Atualiza o nível apenas se for maior que o nível atual
+        currentLevel = newLevel;
+        
+        // Atualiza o elemento do nível
+        const $level = document.getElementById('level');
+        $level.textContent = currentLevel;
     }
 
     currentMusic.loop = true; // Define a música atual para tocar infinitamente
+
 }
 
 

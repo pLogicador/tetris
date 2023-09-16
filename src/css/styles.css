@@ -186,6 +186,32 @@ button:disabled{
     height: 20px;
 }
 
+/* Estilos para os créditos */
+.credit {
+    top: -20px;
+    width: 100%; 
+    white-space: nowrap;
+    position: absolute; 
+    opacity: 0; 
+    color: #FFFFFF;
+    font-size: 9px;
+    text-align: center;
+    font-family: 'Press Start 2P', sans-serif;
+    animation: moveDown 10s linear; 
+}
+
+@keyframes moveDown {
+    0% {
+        top: -20px;
+    }
+    100% {
+        top: calc(50% - 20px); /* Move os créditos para o final do grid */
+        opacity: 10;
+    }
+}
+
+
+
 /* Estilo para o contêiner de conteúdo à direita */
 .content-right{
     width: 180px;
@@ -642,3 +668,5 @@ button:disabled{
         left: 9%; 
     }
 }*/
+
+

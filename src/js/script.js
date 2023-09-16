@@ -17,19 +17,19 @@ const gridWidth = 10; // Tamanho total de colunas
 let currentMusicIndex = 0; // Índice da música atual
 
 
-const musicA = new Audio("./src/assets/sounds/music/A-TypeMusic.mp3");
-const musicB = new Audio("./src/assets/sounds/music/A-TypeMusic(v1.0).mp3");
-const musicC = new Audio("./src/assets/sounds/music/B-TypeMusic.mp3");
-const musicD = new Audio("./src/assets/sounds/music/C-TypeMusic.mp3");
-const musicE = new Audio("./src/assets/sounds/music/TetrisBGM1.mp3");
-const musicF = new Audio("./src/assets/sounds/music/TetrisBGM1(Fast).mp3");
-const musicG = new Audio("./src/assets/sounds/music/TetrisBGM2.mp3");
-const musicH = new Audio("./src/assets/sounds/music/TetrisBGM2(Fast).mp3");
-const musicI = new Audio("./src/assets/sounds/music/TetrisBGM3.mp3");
-const musicJ = new Audio("./src/assets/sounds/music/TetrisBGM3(Fast).mp3");
-const completLineAudio = new Audio("./src/assets/sounds/StageClear.mp3");
-const gameOverAudio = new Audio("./src/assets/sounds/GameOver.mp3")
-const freezeAudio = new Audio("./src/assets/sounds/drop.mp3");
+const musicA = new Audio("./src/assets/sounds/music/TetrisTheme8BitUniverse.mp3");
+const musicB = new Audio("./src/assets/sounds/music/Happy8BitUniverse.mp3");
+const musicC = new Audio("./src/assets/sounds/music/BillieJean8BitUniverse.mp3");
+const musicD = new Audio("./src/assets/sounds/music/Stayin'Alive8BitUniverse.mp3");
+const musicE = new Audio("./src/assets/sounds/music/ShakItOff8BitUniverse.mp3");
+const musicF = new Audio("./src/assets/sounds/music/TakeOnMe8BitUniverse.mp3");
+const musicG = new Audio("./src/assets/sounds/music/Immortals8BitUniverse.mp3");
+const musicH = new Audio("./src/assets/sounds/music/Believer8BitUniverse.mp3");
+const musicI = new Audio("./src/assets/sounds/music/WelcomeToTheBlackParade8BitUniverse.mp3");
+const musicJ = new Audio("./src/assets/sounds/music/HotelCalifornia8BitUniverse.mp3");
+const completLineAudio = new Audio("./src/assets/sounds/line-clear.wav");
+const gameOverAudio = new Audio("./src/assets/sounds/gameOver.wav")
+const freezeAudio = new Audio("./src/assets/sounds/colision.wav");
 const moveSound = new Audio("./src/assets/sounds/move-piece.mp3");
 const rotateSound = new Audio("./src/assets/sounds/rotate-piece.mp3");
 
@@ -129,9 +129,10 @@ function changeMusic(newMusic) {
 
 
 function playPauseSound() {
-    const pauseSound = new Audio("./src/assets/sounds/pause-clear.wav");
+    const pauseSound = new Audio("./src/assets/sounds/pause.wav");
     pauseSound.play();
 }
+
 
 function playCompleteLineAudio() {
     completLineAudio.playbackRate = 1.2;
@@ -350,6 +351,47 @@ function resumeGame() {
 
 
 
+
+
+function displayCredits(){
+    
+    const credits = [
+        "Créditos do Jogo:",
+        "Desenvolvido por Pedro Miranda",
+        "Agradecimentos:",
+        "Quero expressar minha sincera gratidão", 
+        "ao canal 8 Bit Universe por disponibilizar",
+        "remixes incríveis das músicas usadas ", 
+        "neste jogo."
+    ];
+
+
+    let currentCreditIndex = 0;
+    const creditInterval = 4000; // Tempo de exibição de cada crédito (em milissegundos)
+
+    const displayCredit = () => {
+        if (currentCreditIndex < credits.length) {
+            const creditElement = document.createElement("div");
+            creditElement.classList.add("credit");
+            creditElement.textContent = credits[currentCreditIndex];
+            document.querySelector(".grid").appendChild(creditElement);
+            currentCreditIndex++;
+        } else {
+            clearInterval(creditTimer); // Para o temporizador quando todos os créditos forem exibidos
+        }
+    };
+
+    const creditTimer = setInterval(displayCredit, creditInterval);
+
+}
+
+
+
+
+
+
+
+
 // Limite de pontuação de vitória
 const winScore = 9000;
 
@@ -389,6 +431,9 @@ function gameWin() {
         $score.innerHTML += "<br />" + "<br />" + "VICTORY!";
         hasWon = true; // Defina hasWon como true para evitar a reprodução repetida da música de vitória
     }
+
+    // Chama a função de exibição de créditos
+    displayCredits();
 }
 
 // Cria uma função para reproduzir a música de vitória
@@ -396,7 +441,7 @@ function playVictoryMusic() {
     // Pausa a música atual
     currentMusic.pause();
 
-    const victoryAudio = new Audio("./src/assets/sounds/TetrisStats.mp3");
+    const victoryAudio = new Audio("./src/assets/sounds/credits.mp3");
     victoryAudio.play();
 }
 
@@ -517,57 +562,57 @@ function changeMusicAndDifficulty() {
     let newLevel = currentLevel; // Mantém o nível atual
 
     if (score > 500 && score <= 1500 && currentMusic !== musicB) {
-        timeMoveDown = 395;
+        timeMoveDown = 390;
         changeMusic(musicB);
         applyTheme(1);
         newLevel = 2;
         
 
-    } else if (score > 1500 && score <= 2000 && currentMusic !== musicC) {
-        timeMoveDown = 250;
+    } else if (score > 1500 && score <= 2500 && currentMusic !== musicC) {
+        timeMoveDown = 350;
         changeMusic(musicC);
         applyTheme(2);
         newLevel = 3;
 
-    } else if (2000 < score && score <= 2950 && currentMusic !== musicD) {
-        timeMoveDown = 240;
+    } else if (2500 < score && score <= 3500 && currentMusic !== musicD) {
+        timeMoveDown = 290;
         changeMusic(musicD);
         applyTheme(3);
         newLevel = 4;
         
-    } else if (2950 < score && score <= 3500 && currentMusic !== musicE) {
-        timeMoveDown < 235;
+    } else if (3500 < score && score <= 4500 && currentMusic !== musicE) {
+        timeMoveDown < 250;
         changeMusic(musicE);
         applyTheme(4);
         newLevel = 5;
 
-    } else if (3500 < score && score <= 3700 && currentMusic !== musicF) {
-        timeMoveDown < 220;
+    } else if (4500 < score && score <= 5500 && currentMusic !== musicF) {
+        timeMoveDown < 200;
         changeMusic(musicF);
         applyTheme(5);
         newLevel = 6;
 
-    } else if (3700 < score && score <= 4000 && currentMusic !== musicG) {
-        timeMoveDown < 210;
+    } else if (5500 < score && score <= 6500 && currentMusic !== musicG) {
+        timeMoveDown < 190;
         changeMusic(musicG);
         applyTheme(6);
         newLevel = 7;
 
-    } else if (4000 < score && score <= 5022 && currentMusic !== musicH){
-        timeMoveDown < 205;
+    } else if (6500 < score && score <= 7000 && currentMusic !== musicH){
+        timeMoveDown < 150;
         changeMusic(musicH);
         applyTheme(7);
         newLevel = 8;
         
         
-    } else if (5022 < score && score <= 6000 && currentMusic !== musicI){
-        timeMoveDown < 150;
+    } else if (7000 < score && score <= 8000 && currentMusic !== musicI){
+        timeMoveDown < 100;
         changeMusic(musicI);
         applyRainTheme();
         newLevel = 9;
 
-    } else if (6000 < score && score <= 7000 && currentMusic !== musicJ) {
-        timeMoveDown < 100;
+    } else if (8000 < score && score <= 9000 && currentMusic !== musicJ) {
+        timeMoveDown < 90;
         changeMusic(musicJ);
         applySnowTheme();
         newLevel = 10;
@@ -794,3 +839,4 @@ if (isMobile){
 
     }))
 }
+

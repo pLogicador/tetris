@@ -593,26 +593,26 @@ function changeMusicAndDifficulty() {
         newLevel = 6;
 
     } else if (5500 < score && score <= 6500 && currentMusic !== musicG) {
-        timeMoveDown < 190;
+        timeMoveDown < 150;
         changeMusic(musicG);
         applyTheme(6);
         newLevel = 7;
 
-    } else if (6500 < score && score <= 7000 && currentMusic !== musicH){
-        timeMoveDown < 150;
+    } else if (6500 < score && score <= 7500 && currentMusic !== musicH){
+        timeMoveDown < 100;
         changeMusic(musicH);
         applyTheme(7);
         newLevel = 8;
         
         
-    } else if (7000 < score && score <= 8000 && currentMusic !== musicI){
-        timeMoveDown < 100;
+    } else if (7500 < score && score <= 8000 && currentMusic !== musicI){
+        timeMoveDown < 90;
         changeMusic(musicI);
         applyRainTheme();
         newLevel = 9;
 
     } else if (8000 < score && score <= 9000 && currentMusic !== musicJ) {
-        timeMoveDown < 90;
+        timeMoveDown < 80;
         changeMusic(musicJ);
         applySnowTheme();
         newLevel = 10;
@@ -839,4 +839,3 @@ if (isMobile){
 
     }))
 }
-

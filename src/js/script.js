@@ -393,7 +393,7 @@ function displayCredits(){
 
 
 // Limite de pontuação de vitória
-const winScore = 9000;
+const winScore = 10900;
 
 // Verificar a vitória
 function checkWinCondition() {
@@ -561,57 +561,57 @@ let currentLevel = 1;
 function changeMusicAndDifficulty() {
     let newLevel = currentLevel; // Mantém o nível atual
 
-    if (score > 500 && score <= 1500 && currentMusic !== musicB) {
+    if (score > 500 && score <= 1900 && currentMusic !== musicB) {
         timeMoveDown = 390;
         changeMusic(musicB);
         applyTheme(1);
         newLevel = 2;
         
 
-    } else if (score > 1500 && score <= 2500 && currentMusic !== musicC) {
+    } else if (score > 1900 && score <= 3200 && currentMusic !== musicC) {
         timeMoveDown = 350;
         changeMusic(musicC);
         applyTheme(2);
         newLevel = 3;
 
-    } else if (2500 < score && score <= 3500 && currentMusic !== musicD) {
+    } else if (3200 < score && score <= 4500 && currentMusic !== musicD) {
         timeMoveDown = 290;
         changeMusic(musicD);
         applyTheme(3);
         newLevel = 4;
         
-    } else if (3500 < score && score <= 4500 && currentMusic !== musicE) {
-        timeMoveDown < 250;
+    } else if (4500 < score && score <= 5700 && currentMusic !== musicE) {
+        timeMoveDown < 230;
         changeMusic(musicE);
         applyTheme(4);
         newLevel = 5;
 
-    } else if (4500 < score && score <= 5500 && currentMusic !== musicF) {
+    } else if (5700 < score && score <= 6900 && currentMusic !== musicF) {
         timeMoveDown < 200;
         changeMusic(musicF);
         applyTheme(5);
         newLevel = 6;
 
-    } else if (5500 < score && score <= 6500 && currentMusic !== musicG) {
+    } else if (6900 < score && score <= 8000 && currentMusic !== musicG) {
         timeMoveDown < 150;
         changeMusic(musicG);
         applyTheme(6);
         newLevel = 7;
 
-    } else if (6500 < score && score <= 7500 && currentMusic !== musicH){
+    } else if (8000 < score && score <= 9500 && currentMusic !== musicH){
         timeMoveDown < 100;
         changeMusic(musicH);
         applyTheme(7);
         newLevel = 8;
         
         
-    } else if (7500 < score && score <= 8000 && currentMusic !== musicI){
+    } else if (9500 < score && score <= 10000 && currentMusic !== musicI){
         timeMoveDown < 90;
         changeMusic(musicI);
         applyRainTheme();
         newLevel = 9;
 
-    } else if (8000 < score && score <= 9000 && currentMusic !== musicJ) {
+    } else if (10000 < score && score <= 10900 && currentMusic !== musicJ) {
         timeMoveDown < 80;
         changeMusic(musicJ);
         applySnowTheme();

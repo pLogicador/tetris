@@ -393,7 +393,7 @@ function displayCredits(){
 
 
 // Limite de pontuação de vitória
-const winScore = 10900;
+const winScore = 20;
 
 // Verificar a vitória
 function checkWinCondition() {

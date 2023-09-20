@@ -358,11 +358,10 @@ function displayCredits(){
     const credits = [
         "Créditos do Jogo:",
         "Desenvolvido por Pedro Miranda",
-        "Agradecimentos:",
-        "Quero expressar minha sincera gratidão", 
-        "ao canal 8 Bit Universe por disponibilizar",
-        "remixes incríveis das músicas usadas ", 
-        "neste jogo."
+        "Agradecimentos a 8 Bit Universe:", 
+        "por seus incríveis remixes",
+        "das músicas usadas neste jogo.", 
+        "Minha sincera gratidão."
     ];
 
 
@@ -393,7 +392,7 @@ function displayCredits(){
 
 
 // Limite de pontuação de vitória
-const winScore = 10900;
+const winScore = 10999;
 
 // Verificar a vitória
 function checkWinCondition() {
@@ -410,6 +409,7 @@ function gameWin() {
         $startStopButton.disabled = true;
 
         // Limpa o grid imediatamente
+        
         $gridSquares.forEach(square => {
             square.classList.remove("filled", "shapePainted");
         });

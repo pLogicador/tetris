@@ -185,7 +185,6 @@ button:disabled{
 .grid div {
     width: 20px;
     height: 20px;
-    transform: rotateX(30deg); 
 }
 
 /* Estilos para os créditos */
@@ -196,7 +195,7 @@ button:disabled{
     position: absolute; 
     opacity: 0; 
     color: #FFFFFF;
-    font-size: 15px;
+    font-size: 9px;
     text-align: center;
     font-family: 'Press Start 2P', sans-serif;
     animation: moveDown 10s linear; 

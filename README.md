@@ -25,7 +25,7 @@ Para jogar o jogo, basta acessar o [link aqui](https://plogicador.github.io/TETR
 
 ## Agradecimentos
 
-Queremos expressar nossa sincera gratidão ao canal "8 Bit Universe" por disponibilizar remixes incríveis das músicas usadas neste jogo. Suas criações musicais contribuíram significativamente para a experiência de jogo.
+Quero expressar minha sincera gratidão ao canal "8 Bit Universe" por disponibilizar remixes incríveis das músicas usadas neste jogo. Suas criações musicais contribuíram significativamente para a experiência de jogo.
 
 
 ## Créditos

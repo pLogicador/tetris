@@ -268,6 +268,27 @@ function freezeFilled(){
             }
         });
 
+        // Verifica se o jogo terminou antes de remover o último bloco
+        if(hasWon) {
+            // Remove a classe "shapePainted" para que o último bloco desapareça
+            currentShape.forEach(squareIndex =>{
+                if ($gridSquares[squareIndex + currentPosition])
+                {
+                    $gridSquares[squareIndex + currentPosition].classList.remove("shapePainted");
+                }
+
+            })
+        }
+
+        currentShape.forEach(squareIndex=>{
+            // Verifica se o elemento existe
+            if ($gridSquares[squareIndex + currentPosition])
+            {
+                $gridSquares[squareIndex + currentPosition].classList.add("filled");
+            }
+        })
+
+
         currentPosition = 3;
         currentRotation = 0;
 
@@ -352,7 +373,7 @@ function resumeGame() {
 
 
 
-
+/*Texto dos Créditos*/
 function displayCredits(){
     
     const credits = [
@@ -791,12 +812,14 @@ function rotateShape(){
 
     eraseShape();
 
+    
     if (currentRotation === currentShape.length - 1) {
         currentRotation = 0;
     } else {
         currentRotation++;
     }
     currentShape = allShapes[randomShape][currentRotation]
+    
 
     const isLeftEdgeLimit = currentShape.some((squareIndex)=> (squareIndex + currentPosition) % gridWidth === 0 )
     const isRightEdgeLimit = currentShape.some((squareIndex)=> (squareIndex + currentPosition) % gridWidth === gridWidth-1 )

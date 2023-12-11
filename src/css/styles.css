@@ -14,7 +14,6 @@ html, body {
     font-family: 'Arial', sans-serif;
     perspective: 1000px;
 }
-
 /* Estilo para elementos vazios */
 .empty {
     background-color: transparent;
@@ -38,15 +37,13 @@ html, body {
     font-size: 24px;
     position: relative;
 }
-
 /* Estilo para o ícone de alto-falante (padrão) */
 #audio-icon.audio-on::before {
-    content: "\1F50A"; /* Ícone de alto-falante (🔊) */
+    content: "\1F50A"; /* Ícone (🔊) */
 }
-
 /* Estilo para o ícone de "mute" */
 #audio-icon.audio-off::before {
-    content: "\1F507"; /* Ícone de áudio mutado (🔇) */
+    content: "\1F507"; /* Ícone (🔇) */
 }
 
 
@@ -64,11 +61,8 @@ html, body {
     overflow: hidden;
     
 }
-
-
 /* Estilo para o contêiner de conteúdo */
 .content-container{
-    
     display: flex;
     border: 5px solid #1b1a1a;
     background-color: #000000;
@@ -80,13 +74,11 @@ html, body {
     grid-template-columns: 1fr 1fr;
     margin-bottom: 5px;
     display: grid;
-    width: 400px;
-    gap: 8px;
+    width: 350px;
+    gap: 10%;
     margin-top: 5px;
     font-size: 10px;
 }
-
-
 /* Estilo para os botões */
 .buttons-container button {
     border: 5px solid rgb(255, 255, 255, 0.50);
@@ -95,47 +87,37 @@ html, body {
     transition: filter 0.2s;
     border-radius: 50px;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 10px;
     height: 32px;
     cursor: pointer;
     
 }
-
 /* Efeito de hover nos botões */
 .buttons-container button:hover {
     filter: brightness(0.8);
 }
-
 /* Estilo para botões desabilitados */
 button:disabled{
     cursor: not-allowed;
-    opacity: 0.5;
+    opacity: 1.0;
 }
-
 /* Estilos para botões específicos */
-#start-button{
+#start-button, 
+#restart-button{
     background-image: linear-gradient(0deg, white, gray);
     border: 5px solid #333;
     color: black;
-}
 
-#restart-button {
-    background-image: linear-gradient(0deg, white, gray);
-    border: 5px solid #333;
-    color: rgb(0, 0, 0);
 }
 
 
 /* Estilo para o contêiner de botões móveis */
 .mobile-buttons-container {
-    margin-top: 20px;
-    max-width: 300px;
     display: none;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 60px 50px;
     gap: 10%;
+    margin-top: 3%;
 }
-
 /* Estilo para botões móveis */
 .mobile-buttons-container button {
     background-image: linear-gradient(0deg, white, gray);
@@ -143,11 +125,13 @@ button:disabled{
     font-family: "Press Start 2P", sans-serif;
     border: 5px solid #333;
     cursor: pointer;
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-}
 
+    /* Desativa o zoom ao clicar nos botões em dispositivos móveis */
+    touch-action: manipulation;
+}
 /* Estilo para o texto dentro dos botões móveis */
 .mobile-buttons-container button span {
     color: #000000;
@@ -160,15 +144,10 @@ button:disabled{
     line-height: 35px;
     
 }
-
 /* Efeito de hover nos botões móveis */
 .mobile-buttons-container button:hover {
     filter: brightness(0.8);
 }
-
-
-
-
 
 
 /* Estilos para o grid principal */
@@ -180,13 +159,11 @@ button:disabled{
     display: flex;
     flex-wrap: wrap;
 }
-
 /* Estilos para as células do grid */
 .grid div {
     width: 20px;
     height: 20px;
 }
-
 /* Estilos para os créditos */
 .credit {
     top: -20px;
@@ -200,7 +177,6 @@ button:disabled{
     font-family: 'Press Start 2P', sans-serif;
     animation: moveDown 10s linear; 
 }
-
 @keyframes moveDown {
     0% {
         top: -20px;
@@ -223,11 +199,10 @@ button:disabled{
     box-shadow: 10px 10px 12px  rgba(0, 0, 0, 0.5);
     background: linear-gradient(rgb(128, 15, 15), rgba(0, 0, 0, 1));
 }
-
 /* Estilo para o título no contêiner de conteúdo à direita */
 .content-right h3 {
     width: 120px;
-    height: 120;
+    
     font-size: 15px;
     margin-top: 10px;
     letter-spacing: 1px;
@@ -243,7 +218,6 @@ button:disabled{
     flex-direction: column;
     margin-top: 15px;
 }
-
 /* Aplicando cores diferentes ao texto "SCORE:" usando um gradiente */
 .content-right h3::before {
     content: "SCORE";
@@ -252,7 +226,6 @@ button:disabled{
     color: transparent; /* Torna o texto original dentro do pseudo-elemento transparente */
     position: absolute;
 }
-
 /* Estilo para a pontuação */
 .score {
     font-size: 10px;
@@ -262,9 +235,6 @@ button:disabled{
     font-family: 'Press Start 2P', sans-serif;
     text-shadow: 2px 2px rgb(71, 71, 64), -2px -2px rgb(65, 92, 94);
 }
-
-
-
 /* Estilo para o contador de linhas */
 .lines-counter {
     width: 120px;
@@ -278,8 +248,6 @@ button:disabled{
     box-shadow: 5px 5px 5px 0  rgba(192, 120, 13, 0.5);
     padding: 5px;
 }
-
-
 /* Estilo para o texto no contador de linhas */
 .lines-counter p {
     font-family: 'Press Start 2P', sans-serif;
@@ -293,8 +261,6 @@ button:disabled{
     align-items: center;
     justify-content: center;
 }
-
-
 /* Estilo para o número de linhas */
 #lines-count {
     font-weight: bold;
@@ -304,8 +270,6 @@ button:disabled{
     margin-top: 5px;
     
 }
-
-
 /* Estilo para o elemento de nível */
 .level {
     width: 120px;
@@ -321,13 +285,11 @@ button:disabled{
     border: 5px solid #ffca1d;
     padding: 10px;
 }
-
 /* Estilo para o número do nível */
 #level {
     color: #ffffff;
     font-size: 10px;
 }
-
 /* Estilo para o texto "LEVEL" */
 .level-text {
     background: linear-gradient(to top, rgb(121, 112, 112), rgb(251, 255, 4));
@@ -335,9 +297,6 @@ button:disabled{
     text-shadow: none;
     font-size: 15px; 
 }
-
-
-
 /* Estilo para o mini-grid */
 .mini-grid{
     margin-top: 10px;
@@ -348,14 +307,12 @@ button:disabled{
     flex-wrap: wrap;
     box-shadow: 5px 5px 5px 0  rgba(192, 120, 13, 0.5);
 }
-
 /* Estilo para as células do mini-grid */
 .mini-grid div {
     border: 1px solid #31312f;
     width: 20px;
     height: 20px;
 }
-
 
 
 /* Estilo para as peças pintadas no grid */
@@ -373,10 +330,7 @@ button:disabled{
         -1px 1px 0px rgba(0, 0, 0, 0.9), 
         10px 10px 10px rgba(10, 10, 10, 0.9),
         5px 5px 3px rgba(0, 0, 0, 0.9);
-
 }
-
-
 /* Ponto de pixel nas peças pintadas */
 .shapePainted::before {
     content: "";
@@ -392,12 +346,7 @@ button:disabled{
     position: relative;
     
     z-index: -1;
-
-    
 }
-
-
-
 
 
 
@@ -405,23 +354,18 @@ button:disabled{
 .blue{
     background-color: rgb(4, 62, 156); /* Azul */
 }
-
 .red{
     background-color: rgb(191, 13, 13); /* Vermelho */
 } 
-
 .green{
     background-color: rgb(12, 184, 6); /* Verde */
 } 
-
 .orange{
     background-color: rgb(255, 110, 9); /* Laranja */
 }
-
 .yellow{
     background-color: rgb(253, 250, 36); /* Amarelo */
 } 
-
 .pink{
     background-color: rgb(122, 4, 101); /* Roxo */
 }
@@ -431,14 +375,11 @@ button:disabled{
 /* Tema 1 */
 .theme-1-grid {
     background: linear-gradient(0deg, rgb(187, 131, 140), rgb(221, 185, 24));
-    
 }
-
 .theme-1-content-right {
     border: 10px solid rgb(196, 51, 75);
     box-shadow: 10px 10px 12px  rgba(255, 251, 0, 0.5);
     background: linear-gradient(rgb( grey, rgb(255, 51, 1)));
-    
 }
 .theme-1-mini-grid {
     background-color: rgb(112, 104, 104);
@@ -449,17 +390,14 @@ button:disabled{
     box-shadow: 5px 5px 5px 0  rgba(255, 0, 0, 0.5);    
 }
 
-
 /* Tema 2 */
 .theme-2-grid {
     background: linear-gradient(0deg, rgb(69, 189, 69), rgb(119, 4, 119));
 }
-
 .theme-2-content-right {
     border: 10px solid rgb(30, 255, 0);
     box-shadow: 10px 10px 12px  rgba(73, 36, 95, 0.5);
     background: linear-gradient(rgb( black, rgb(104, 77, 201)));
-    
 }
 .theme-2-mini-grid {
     background-color: rgb(155, 138, 216);
@@ -470,7 +408,6 @@ button:disabled{
     box-shadow: 5px 5px 5px 0  rgba(0, 0, 0, 0.5);    
 }
 
-
 /* Tema 3 */
 .theme-3-grid {
     background: linear-gradient(15deg, rgb(184, 107, 107), rgb(3, 42, 168), rgb(184, 178, 178));
@@ -479,7 +416,6 @@ button:disabled{
     border: 10px solid rgb(30, 150, 110);
     box-shadow: 10px 10px 12px  rgba(1, 44, 35, 0.5);
     background: linear-gradient(rgb( rgb(21, 44, 119), rgb(63, 92, 255)));
-    
 }
 .theme-3-mini-grid {
     background-color: rgb(24, 71, 75);
@@ -498,7 +434,6 @@ button:disabled{
     border: 10px solid rgb(0, 0, 0);
     box-shadow: 10px 10px 12px  rgba(98, 99, 99, 0.5);
     background: linear-gradient(rgb( rgb(59, 1, 45), rgb(69, 68, 71)));
-    
 }
 .theme-4-mini-grid {
     background-color: rgb(0, 0, 0);
@@ -517,7 +452,6 @@ button:disabled{
     border: 10px solid rgb(163, 0, 0);
     box-shadow: 10px 10px 12px  rgba(0, 0, 0, 0.5);
     background: linear-gradient(rgb( rgb(44, 1, 34), rgb(5, 5, 5)));
-    
 }
 .theme-5-mini-grid {
     background-image: linear-gradient(15deg, red, black);
@@ -528,7 +462,6 @@ button:disabled{
     box-shadow: 5px 5px 5px 0  rgba(78, 77, 77, 0.5);    
 }
 
-
 /* Tema 6 */
 .theme-6-grid {
     background: linear-gradient(50deg, rgb(14, 14, 14), rgb(66, 66, 66, 0.50));
@@ -537,14 +470,12 @@ button:disabled{
     border: transparent;
     box-shadow: 10px 10px 12px  rgba(0, 0, 0, 0.5);
     background: transparent;
-    
 }
 .theme-6-mini-grid {
     display: none;
-
 }
 
-/* Tema 6 */
+/* Tema 7 */
 .theme-7-grid {
     background: linear-gradient(50deg, rgb(0, 95, 51, 0.20), rgba(250, 250, 250, 0.20));
 }
@@ -552,7 +483,6 @@ button:disabled{
     border: transparent;
     box-shadow: 10px 10px 12px  rgba(0, 0, 0, 0.5);
     background: transparent;
-    
 }
 .theme-7-mini-grid {
     background: transparent;
@@ -561,9 +491,7 @@ button:disabled{
     display: flex;
     flex-wrap: wrap;
     box-shadow: 5px 5px 5px 0  rgba(0, 172, 114, 0.5);  
-
 }
-
 
 /*Tema de fundo para a fase da chuva */
 .theme-rain {
@@ -600,7 +528,6 @@ button:disabled{
     flex-wrap: wrap;
     box-shadow: 5px 5px 5px 0  rgba(255, 0, 0, 0.5);
 }
-
 
 /*Tema de fundo para a fase da neve */
 .theme-snow {
@@ -645,10 +572,12 @@ button:disabled{
     .mobile-buttons-container{
         display: grid;
     }
+    .disable-dbl-tap-zoom {
+        touch-action: manipulation;
+    }
 }
-
-
 @media (max-width:470px){
+    /*
     .container-right h3{
         width: 120px;
         height: 100px;
@@ -666,12 +595,18 @@ button:disabled{
         padding: 10px;
         flex-direction: column
     }
-    
     .score{
         font-size: 10px;
         font-weight: bold;
         margin-top: 5px;
         color: white;
+    }*/
+    .mobile-buttons-container{
+        display: grid;
+    }
+
+    .disable-dbl-tap-zoom {
+        touch-action: manipulation;
     }
 }
 
@@ -682,5 +617,3 @@ button:disabled{
         left: 9%; 
     }
 }*/
-
-

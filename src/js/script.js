@@ -239,7 +239,6 @@ function displayNextShape(){
 displayNextShape();
 
 
-
 // Função para desenhar a forma atual no grid
 function drawShape(){
     currentShape.forEach(squareIndex => {
@@ -571,6 +570,10 @@ function updateScore(updateValue){
     timerId = setInterval(moveDown, timeMoveDown);
 
 }
+
+// Reduz o Número de Consultas ao DOM
+const $linesCount = document.getElementById('lines-count');
+const $level = document.getElementById('level');
 
 
 

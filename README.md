@@ -7,7 +7,7 @@ Este é um clone simples do clássico jogo Tetris, implementado em JavaScript. O
 
 <div align="center">
   <h3>OBS: Este jogo ainda está em fase de testes</h3>
-  <a href="https://plogicador.github.io/TETRIS/"><strong>JOGAR TETRIS!</strong></a><br><br>
+  <a href="https://plogicador.github.io/tetris/"><strong>JOGAR TETRIS!</strong></a><br><br>
   <img src="https://github.com/pLogicador/TETRIS/assets/113561981/a4245ba4-cd89-41fe-91ce-2b4f2050bc5f" alt="Tetris">
 </div>
 

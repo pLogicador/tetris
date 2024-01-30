@@ -15,8 +15,6 @@
 let hasWon = false;
 const gridWidth = 10; // Tamanho total de colunas
 let currentMusicIndex = 0; // Índice da música atual
-
-
 const musicA = new Audio("./src/assets/sounds/music/TetrisTheme8BitUniverse.mp3");
 const musicB = new Audio("./src/assets/sounds/music/Happy8BitUniverse.mp3");
 const musicC = new Audio("./src/assets/sounds/music/BillieJean8BitUniverse.mp3");
@@ -28,11 +26,10 @@ const musicH = new Audio("./src/assets/sounds/music/Believer8BitUniverse.mp3");
 const musicI = new Audio("./src/assets/sounds/music/WelcomeToTheBlackParade8BitUniverse.mp3");
 const musicJ = new Audio("./src/assets/sounds/music/HotelCalifornia8BitUniverse.mp3");
 const completLineAudio = new Audio("./src/assets/sounds/line-clear.wav");
-const gameOverAudio = new Audio("./src/assets/sounds/gameOver.wav")
+const gameOverAudio = new Audio("./src/assets/sounds/gameOver.wav");
 const freezeAudio = new Audio("./src/assets/sounds/colision.wav");
 const moveSound = new Audio("./src/assets/sounds/move-piece.mp3");
 const rotateSound = new Audio("./src/assets/sounds/rotate-piece.mp3");
-
 
 // Funções para ajustar os sons
 function playRotateSound() {
@@ -49,7 +46,6 @@ function playMoveSound() {
 const muteButton = document.getElementById("mute-button");
 const audioIcon = document.getElementById("audio-icon");
 let isMuted = false;
-
 
 muteButton.addEventListener("click", () => {
     isMuted = !isMuted; // Inverte o estado de mutado
@@ -86,6 +82,9 @@ function setMusicVolume(volume) {
     musicF.volume = volume;
     musicG.volume = volume;
     musicH.volume = volume;
+    musicI.volume = volume;
+    musicJ.volume = volume;
+    
 }
 
 function setSoundEffects(volume){
@@ -99,22 +98,16 @@ function setSoundEffects(volume){
 setMusicVolume(0.5);
 setSoundEffects(0.4);
 
-
-
-
 let currentMusic = musicA; // Inicialmente, com a música A
 let musicStarted = false; // Flag para verificar se a música já começou
 
 // Função para iniciar a música de fundo
 function playBackgroundMusic() {
-    if (!musicStarted) {
-        if (currentMusic.paused) {
-            currentMusic.play();
-            musicStarted = true;
-        }
+    if (!musicStarted && currentMusic.paused) {
+        currentMusic.play();
+        musicStarted = true;
     }
 }
-
 
 // Função para trocar a música de fundo
 function changeMusic(newMusic) {
@@ -127,12 +120,9 @@ function changeMusic(newMusic) {
     }
 }
 
-
 function playPauseSound() {
-    const pauseSound = new Audio("./src/assets/sounds/pause.wav");
-    pauseSound.play();
+    new Audio("./src/assets/sounds/pause.wav").play();
 }
-
 
 function playCompleteLineAudio() {
     completLineAudio.playbackRate = 1.2;
@@ -143,10 +133,6 @@ function playCompleteLineAudio() {
     
 }
 
-
-
-
-
 // Formas das peças do Tetris
 const lShape = [
     // 1° rotação, 2° rotação, 3°rotação, 4°rotação
@@ -154,30 +140,25 @@ const lShape = [
     [gridWidth, gridWidth+1, gridWidth+2, gridWidth*2+2],
     [1, gridWidth+1, gridWidth*2, gridWidth*2+1],
     [gridWidth, gridWidth*2, gridWidth*2+1, gridWidth*2+2]
-
 ]
-
 const zShape = [
     [gridWidth + 1, gridWidth + 2, gridWidth*2, gridWidth*2 + 1],
     [0, gridWidth, gridWidth + 1, gridWidth*2 + 1],
     [gridWidth + 1, gridWidth + 2, gridWidth*2, gridWidth*2 + 1],
     [0, gridWidth, gridWidth + 1, gridWidth*2 + 1]
 ]
-
 const tShape = [
     [1, gridWidth, gridWidth + 1, gridWidth + 2],
     [1, gridWidth + 1, gridWidth + 2, gridWidth*2 + 1],
     [gridWidth, gridWidth + 1, gridWidth + 2, gridWidth*2 + 1],
     [1, gridWidth, gridWidth + 1, gridWidth*2 + 1]
 ]
-
 const oShape = [
     [0, 1, gridWidth, gridWidth + 1],
     [0, 1, gridWidth, gridWidth + 1],
     [0, 1, gridWidth, gridWidth + 1],
     [0, 1, gridWidth, gridWidth + 1]
 ]
-
 const iShape = [
     [1, gridWidth + 1, gridWidth*2 + 1, gridWidth*3 + 1],
     [gridWidth, gridWidth + 1, gridWidth + 2, gridWidth + 3],
@@ -185,24 +166,17 @@ const iShape = [
     [gridWidth, gridWidth + 1, gridWidth + 2, gridWidth + 3]
 ]
 
-
-
-
 const allShapes = [lShape, zShape, tShape, oShape, iShape];
 
 // Cores das peças
 const colors = ["red", "green", "orange", "yellow", "pink"];
 let currentColor = Math.floor(Math.random() * colors.length);
 let nextColor = colors[currentColor];
-
-
-
 let currentPosition = 3;
 let currentRotation = 0;
 let randomShape = Math.floor(Math.random() * allShapes.length);
 let currentShape = allShapes[randomShape][currentRotation];
 let $gridSquares = Array.from(document.querySelectorAll(".grid div"));
-
 
 // Definição dos próximos formatos
 const $miniGridSquares = document.querySelectorAll(".mini-grid div");
@@ -216,7 +190,6 @@ const possibleNextShapes = [
     [ 1, miniGridWidth+1, miniGridWidth*2+1, miniGridWidth*3+1 ]
 ]
 
-
 let nextRandomShape = Math.floor(Math.random() * possibleNextShapes.length);
 
 // Função para exibir o próximo formato
@@ -227,17 +200,15 @@ function displayNextShape(){
     nextColor = Math.floor(Math.random() * colors.length)
 
 
-    nextRandomShape = Math.floor(Math.random() * possibleNextShapes.length);
+    nextRandomShape =  Math.floor(Math.random() * possibleNextShapes.length);
     const nextShape = possibleNextShapes[nextRandomShape];
 
     nextShape.forEach(squareIndex =>
         $miniGridSquares[squareIndex + nextPosition + miniGridWidth].classList.add("shapePainted", `${colors[nextColor]}`)
-    );
-    
+    );   
 }
 
 displayNextShape();
-
 
 // Função para desenhar a forma atual no grid
 function drawShape(){
@@ -245,8 +216,6 @@ function drawShape(){
         $gridSquares[squareIndex + currentPosition].classList.add("shapePainted", `${colors[currentColor]}`);
     })
 }
-//drawShape();
-
 
 // Função para apagar a forma atual do grid
 function eraseShape(){
@@ -287,7 +256,6 @@ function freezeFilled(){
             }
         })
 
-
         currentPosition = 3;
         currentRotation = 0;
 
@@ -308,34 +276,21 @@ function freezeFilled(){
     }
 }
 
-
-
-
 // Inicialização do jogo
 let timeMoveDown = 500;
 let timerId = null;
 const $startStopButton = document.getElementById("start-button") ;
 
-
 // Evento de clique no botão Play/Pause
 $startStopButton.addEventListener("click", ()=>{
-    if (timerId){
-        pauseGame();
-
-    } else {
-        //timerId = setInterval(moveDown, timeMoveDown);
-        resumeGame();
-        //playBackgroundMusic();
-    }
+    pauseGame()
 })
 
 const $restartButton = document.getElementById("restart-button");
 
-
 $restartButton.addEventListener("click", ()=>{
     window.location.reload();
 })
-
 
 // Função para pausar o jogo
 function pauseGame() {
@@ -353,12 +308,7 @@ function pauseGame() {
         }
 
         playPauseSound();
-    }
-}
-
-// Função para retomar o jogo
-function resumeGame() {
-    if (!timerId) {
+    } else {
         timerId = setInterval(moveDown, timeMoveDown);
         $startStopButton.textContent = "PAUSE";
         
@@ -369,54 +319,15 @@ function resumeGame() {
     }
 }
 
-
-
-
 /*Texto dos Créditos*/
-function displayCredits(){
-    
-    const credits = [
-        "Créditos do Jogo:",
-        "Desenvolvido por Pedro Miranda",
-        "Agradecimentos a 8 Bit Universe:", 
-        "por seus incríveis remixes",
-        "das músicas usadas neste jogo.", 
-        "Minha sincera gratidão."
-    ];
-
-
-    let currentCreditIndex = 0;
-    const creditInterval = 4000; // Tempo de exibição de cada crédito (em milissegundos)
-
-    const displayCredit = () => {
-        if (currentCreditIndex < credits.length) {
-            const creditElement = document.createElement("div");
-            creditElement.classList.add("credit");
-            creditElement.textContent = credits[currentCreditIndex];
-            document.querySelector(".grid").appendChild(creditElement);
-            currentCreditIndex++;
-        } else {
-            clearInterval(creditTimer); // Para o temporizador quando todos os créditos forem exibidos
-        }
-    };
-
-    const creditTimer = setInterval(displayCredit, creditInterval);
-
+function displayCredits() {  
+    document.getElementById('content-credit').classList.remove('hide')    
+    document.getElementById('credit-div').classList.add("credit");
 }
-
-
-
-
-
-
-
-
-// Limite de pontuação de vitória
-const winScore = 10999;
 
 // Verificar a vitória
 function checkWinCondition() {
-    if (score >= winScore) {
+    if (score >= levels[levels.length-1].maxScore) {
         gameWin();
     }
 }
@@ -429,19 +340,9 @@ function gameWin() {
         $startStopButton.disabled = true;
 
         // Limpa o grid imediatamente
-        
         $gridSquares.forEach(square => {
             square.classList.remove("filled", "shapePainted");
         });
-
-        // Limpa todas as peças completamente
-        /*
-        for (let row = 0; row < gridWidth; row++) {
-            for (let col = 0; col < gridWidth; col++) {
-                const index = row * gridWidth + col;
-                $gridSquares[index].classList.remove("filled", "shapePainted", `${colors[currentColor]}`);
-            }
-        }*/
 
         // Define hasWon como true para evitar a reprodução repetida da música de vitória
         hasWon = true;
@@ -465,7 +366,6 @@ function playVictoryMusic() {
     victoryAudio.play();
 }
 
-
 // Função para lidar com o fim do jogo
 function gameOver(){
     if (currentShape.some(squareIndex =>
@@ -475,8 +375,6 @@ function gameOver(){
         clearInterval(timerId);
         timerId = null;
         $startStopButton.disabled = true;
-
-        
 
         // Pausa a música de fundo, se estiver tocando
         if (musicStarted) {
@@ -488,11 +386,6 @@ function gameOver(){
         $score.innerHTML += "<br />" + "GAMER OVER";
     };
 }
-
-
-
-
-
 
 
 // Variável global para rastrear o número de linhas consecutivas que o jogador limpou
@@ -526,7 +419,6 @@ function checkIfRowsFilled(){
         
             updateScore(20);
 
-
             // Verifica se o jogador limpou 3 linhas consecutivas
             consecutiveLinesCleared++;
             if (consecutiveLinesCleared === 4) {
@@ -534,25 +426,19 @@ function checkIfRowsFilled(){
                 consecutiveLinesCleared = 0; // Reinicia o contador de linhas consecutivas
             }
 
-
-
-
             playCompleteLineAudio();
         }
     }
 }
 
-
 // variável para rastrear o número de linhas completadas
 let linesCleared = 0;
-
 
 // Função para atualizar o contador de linhas
 function updateLinesCounter() {
     const $linesCount = document.getElementById('lines-count');
     $linesCount.textContent = linesCleared;
 }
-
 
 // Função para atualizar a pontuação e a dificuldade
 const $score = document.querySelector(".score");
@@ -568,78 +454,85 @@ function updateScore(updateValue){
     changeMusicAndDifficulty();
 
     timerId = setInterval(moveDown, timeMoveDown);
-
 }
 
 // Reduz o Número de Consultas ao DOM
 const $linesCount = document.getElementById('lines-count');
 const $level = document.getElementById('level');
 
-
-
 // Nível atual
-let currentLevel = 1;
+let currentLevel = 1; 
 
+
+const levels = [
+    {
+        minScore: 500,
+        maxScore: 1900,
+        music: musicB,
+        timeMoveDown: 390
+    },
+    {
+        minScore: 1900,
+        maxScore: 3200,
+        music: musicC,
+        timeMoveDown: 350
+    },
+    {
+        minScore: 3200,
+        maxScore: 4500,
+        music: musicD,
+        timeMoveDown: 290
+    },
+    {
+        minScore: 4500,
+        maxScore: 5700,
+        music: musicE,
+        timeMoveDown: 230
+    },
+    {
+        minScore: 5700,
+        maxScore: 6900,
+        music: musicF,
+        timeMoveDown: 200
+    },
+    {
+        minScore: 6900,
+        maxScore: 8000,
+        music: musicG,
+        timeMoveDown: 190
+    },
+    {
+        minScore: 8000,
+        maxScore: 9500,
+        music: musicH,
+        timeMoveDown: 180
+    },
+    {
+        minScore: 9500,
+        maxScore: 10000,
+        music: musicI,
+        timeMoveDown: 150
+    },
+    {
+        minScore: 10000,
+        maxScore: 10010,
+        music: musicJ,
+        timeMoveDown: 148
+    }
+]
 
 // Função para alterar a música de fundo e a dificuldade do jogo
 function changeMusicAndDifficulty() {
     let newLevel = currentLevel; // Mantém o nível atual
+    let nextLevel = levels[newLevel-1]
 
-    if (score > 500 && score <= 1900 && currentMusic !== musicB) {
-        timeMoveDown = 390;
-        changeMusic(musicB);
-        applyTheme(1);
-        newLevel = 2;
-        
-
-    } else if (score > 1900 && score <= 3200 && currentMusic !== musicC) {
-        timeMoveDown = 350;
-        changeMusic(musicC);
-        applyTheme(2);
-        newLevel = 3;
-
-    } else if (3200 < score && score <= 4500 && currentMusic !== musicD) {
-        timeMoveDown = 290;
-        changeMusic(musicD);
-        applyTheme(3);
-        newLevel = 4;
-        
-    } else if (4500 < score && score <= 5700 && currentMusic !== musicE) {
-        timeMoveDown < 230;
-        changeMusic(musicE);
-        applyTheme(4);
-        newLevel = 5;
-
-    } else if (5700 < score && score <= 6900 && currentMusic !== musicF) {
-        timeMoveDown < 200;
-        changeMusic(musicF);
-        applyTheme(5);
-        newLevel = 6;
-
-    } else if (6900 < score && score <= 8000 && currentMusic !== musicG) {
-        timeMoveDown < 150;
-        changeMusic(musicG);
-        applyTheme(6);
-        newLevel = 7;
-
-    } else if (8000 < score && score <= 9500 && currentMusic !== musicH){
-        timeMoveDown < 100;
-        changeMusic(musicH);
-        applyTheme(7);
-        newLevel = 8;
-        
-        
-    } else if (9500 < score && score <= 10000 && currentMusic !== musicI){
-        timeMoveDown < 90;
-        changeMusic(musicI);
-        applyRainTheme();
-        newLevel = 9;
-
-    } else if (10000 < score && score <= 10900 && currentMusic !== musicJ) {
-        timeMoveDown < 80;
-        changeMusic(musicJ);
-        applySnowTheme();
-        newLevel = 10;
+    if (!nextLevel || !timerId) return
+    
+    if (score >= nextLevel.minScore) {
+        timeMoveDown = nextLevel.timeMoveDown;
+        changeMusic(nextLevel.music);
+        applyTheme(newLevel)
+        newLevel++;
     }
 
     if (newLevel > currentLevel) {
@@ -652,14 +545,15 @@ function changeMusicAndDifficulty() {
     }
 
     currentMusic.loop = true; // Define a música atual para tocar infinitamente
-
 }
 
 
-
-
-
 function applyTheme(themeNumber) {
+    if (themeNumber == levels.length - 1) {
+        applySnowTheme();
+        return;
+    }
+
     // Remove todas as classes de tema do elemento .grid, .mini-grid e .content-right
     const grid = document.querySelector('.grid');
     const miniGrid = document.querySelector('.mini-grid');
@@ -683,7 +577,6 @@ function applyTheme(themeNumber) {
     contentRight.classList.add(`theme-${themeNumber}-content-right`);
 }
 
-
 function applyRainTheme() {
     const grid = document.querySelector('.grid');
     grid.classList.add('theme-rain');
@@ -698,7 +591,6 @@ function applyRainTheme() {
     const contentRight = document.querySelector('.content-right');
     contentRight.classList.add('theme-rain-content-right');
 }
-
 
 function applySnowTheme() {
     const grid = document.querySelector('.grid');
@@ -716,33 +608,88 @@ function applySnowTheme() {
 }
 
 
-
-
-
-
-
-
 // Função para manipular eventos de teclado
 document.addEventListener("keydown", controlKeyBoard);
+document.addEventListener("keyup", onKeyUp);
 
+let pressRight = false
+let pressLeft = false
+let pressDown = false
+let pressUp = false
 
-function controlKeyBoard(event){
-    if (timerId){
-        if(event.key === "ArrowLeft"){
-            moveLeft();
-        } else if (event.key === "ArrowRight")
-        {
-            moveRight();
-        } else if (event.key === "ArrowDown"){
-            moveDown();
-        } else if (event.key === "ArrowUp")
-        {
-            rotateShape();
-        }
+function onKeyUp(event) {
+    mustBeRotate = true
+
+    if (event.key == 'ArrowRight') {
+        pressRight = false
     }
-
+    else if (event.key == 'ArrowLeft') {
+        pressLeft = false
+    }
+    else if (event.key == 'ArrowDown') {
+        pressDown = false
+    }
+    else if (event.key == 'ArrowUp') {
+        pressUp = false
+    }
 }
 
+const keyBoardMap = {
+    "ArrowLeft": moveLeft,
+    "ArrowRight": moveRight,
+    "ArrowDown": moveDown,
+    "ArrowUp": rotateShape
+}
+
+setInterval(() => {
+    if(!timerId){
+        return
+    }
+    if (pressRight) {
+        moveRight();
+    }
+    if (pressLeft) {
+        moveLeft();
+    }
+    if (pressDown) {
+        moveDown();
+    }
+}, 75)
+
+let rotateCoolDown = 0;
+let mustBeRotate = true
+
+setInterval(() => {
+    if(!timerId){
+        return
+    }
+    if (pressUp && mustBeRotate) {
+        rotateShape();
+        mustBeRotate = false
+    }
+}, 25)
+
+function controlKeyBoard(event){
+    if(event.keyCode == 32){
+        event.preventDefault()
+        pauseGame()
+    }
+    
+    if (timerId){
+        if (event.key == 'ArrowRight') {
+            pressRight = true
+        }
+        else if (event.key == 'ArrowLeft') {
+            pressLeft = true
+        }
+        else if (event.key == 'ArrowDown') {
+            pressDown = true
+        }
+        else if (event.key == 'ArrowUp') {
+            pressUp = true
+        }
+    }
+}
 
 // Funções para movimentação das peças
 function moveDown(){
@@ -750,14 +697,11 @@ function moveDown(){
     if (hasWon) return;
 
     freezeFilled();
-
-
     eraseShape();
     currentPosition += gridWidth;
     drawShape();
     playMoveSound();
 }
-
 
 function moveLeft(){
     if (hasWon) return;
@@ -769,8 +713,8 @@ function moveLeft(){
     const isFilled = currentShape.some(squareIndex => 
         $gridSquares[squareIndex + currentPosition - 1].classList.contains("filled")
     )
-    if (isFilled) return
 
+    if (isFilled) return
 
     eraseShape();
     currentPosition--
@@ -778,26 +722,21 @@ function moveLeft(){
     playMoveSound();
 }
 
-
 function moveRight(){
     if (hasWon) return;
 
-
     const isEdgeLimit  = currentShape.some((squareIndex) => (squareIndex + currentPosition) % gridWidth === gridWidth - 1)
     if (isEdgeLimit) return
-
 
     const isFilled = currentShape.some(squareIndex => 
         $gridSquares[squareIndex + currentPosition + 1].classList.contains("filled")
     )
     if (isFilled) return
-
     eraseShape();
     currentPosition++
     drawShape();
     playMoveSound();
 }
-
 
 function previousRotation(){
     if (currentRotation === 0){
@@ -805,17 +744,13 @@ function previousRotation(){
     } else {
         currentRotation--;
     }
-
     currentShape = allShapes[randomShape][currentRotation];
 }
 
-
 function rotateShape(){
     if (hasWon) return;
-
     eraseShape();
 
-    
     if (currentRotation === currentShape.length - 1) {
         currentRotation = 0;
     } else {
@@ -823,49 +758,41 @@ function rotateShape(){
     }
     currentShape = allShapes[randomShape][currentRotation]
     
-
     const isLeftEdgeLimit = currentShape.some((squareIndex)=> (squareIndex + currentPosition) % gridWidth === 0 )
     const isRightEdgeLimit = currentShape.some((squareIndex)=> (squareIndex + currentPosition) % gridWidth === gridWidth-1 )
 
     if (isLeftEdgeLimit && isRightEdgeLimit){
         previousRotation();
     }
-
     const isFilled  = currentShape.some(squareIndex =>
         $gridSquares[squareIndex + currentPosition].classList.contains("filled")
     )
     if (isFilled) {
         previousRotation();
     }
-
     drawShape();
     playRotateSound();
 }
 
-
-
 /* Controle Mobile */
 const isMobile = window.matchMedia('(max-width: 990px)').matches;
 
-
 if (isMobile) {
+    const buttonMap = {
+        'left-button': moveLeft,
+        'right-button': moveRight,
+        'down-button': moveDown,
+        'rotate-button': rotateShape,
+    }
+
     const $mobileButtons = document.querySelectorAll(".mobile-buttons-container button");
 
-    //const $mobileButtons = document.querySelectorAll(".")
     $mobileButtons.forEach(button=>{
         button.classList.add('disabled-dbl-tap-zoom');
 
         button.addEventListener("click", ()=>{
             if (timerId){
-                if (button.classList[0] === "left-button"){
-                    moveLeft();
-                } else if (button.classList[0] === "right-button"){
-                    moveRight();
-                } else if (button.classList[0] === "down-button"){
-                    moveDown();
-                } else if (button.classList[0] === "rotate-button"){
-                    rotateShape();
-                }
+                buttonMap[button.classList[0]]()
             }
     
         });

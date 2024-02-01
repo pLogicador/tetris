@@ -7,25 +7,17 @@
 
         <link rel="icon" href="/src/assets/images/favicon/faviconTetris.png" type="image/x-icon">
 
-        <!--font pixel -->
+        <!-- fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Flavors&family=Press+Start+2P&display=swap" rel="stylesheet">
-
-
-        <!--font buttons -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
         <link rel="stylesheet" href="src/css/styles.css">
-
-
     </head>
 
     <body>
 
-        
-        
-        
         <div class="container">
 
             <!-- Botão de áudio -->
@@ -34,6 +26,7 @@
                     <span id="audio-icon" class="audio-on"></span>
                 </button>
             </div>
+
             <!-- display -->
             <div class="content-container">
                 <div class="grid">
@@ -316,7 +309,7 @@
                 </div>
                 
             </div>
-            <div id="content-credit" class="content-container hide" style="color: white; position: absolute; width: 400px; height: 410px; margin-top: -50px; background-color: #0000008a;">
+            <div id="content-credit" class="content-container hide" style="color: white; position: absolute; width: 400px; height: 410px; margin-top: -50px; background-color: #0000008a; z-index: 1;">
                 <div id="credit-div" style="line-height: 30px;">
                     <p>Créditos do Jogo:</p>
                     <p>Desenvolvido por Pedro Miranda</p>
@@ -330,9 +323,6 @@
                 <button id="start-button">START</button>
                 <button id="restart-button">RESTART</button>
             </div>
-
-            
-
 
             <!--buttons-->
             <div class="mobile-buttons-container">
@@ -352,7 +342,9 @@
             </div>
         </div>
 
-
-        <script src="src/js/script.js"></script>
+        <script src="src/js/gameSettings.js"></script>
+        <script src="src/js/shapesPieces.js"></script>
+        <script src="src/js/tetrisCustom.js"></script>
+        <script src="src/js/inputControl.js"></script>
     </body>
 </html>

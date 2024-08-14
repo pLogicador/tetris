@@ -1,4 +1,5 @@
 # TETRIS
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/pLogicador/tetris/blob/main/LICENSE) 
 
 # Sobre o projeto
 https://plogicador.github.io/tetris/

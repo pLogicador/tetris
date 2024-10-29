@@ -159,7 +159,7 @@ function updateLinesCounter() {
 
 // Function to update score and difficulty
 const $score = document.querySelector(".score");
-let score = 9000;
+let score = 0;
 
 function updateScore(updateValue){
     score += updateValue;

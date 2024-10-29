@@ -1,5 +1,4 @@
-
-// Função para manipular eventos de teclado
+// Function to handle keyboard events
 document.addEventListener("keydown", controlKeyBoard);
 document.addEventListener("keyup", onKeyUp);
 
@@ -12,16 +11,16 @@ function onKeyUp(event) {
     mustBeRotate = true
 
     if (event.key == 'ArrowRight') {
-        pressRight = false
+        pressRight = false;
     }
     else if (event.key == 'ArrowLeft') {
-        pressLeft = false
+        pressLeft = false;
     }
     else if (event.key == 'ArrowDown') {
-        pressDown = false
+        pressDown = false;
     }
     else if (event.key == 'ArrowUp') {
-        pressUp = false
+        pressUp = false;
     }
 }
 
@@ -30,12 +29,12 @@ const keyBoardMap = {
     "ArrowRight": moveRight,
     "ArrowDown": moveDown,
     "ArrowUp": rotateShape
-}
+};
 
-// Velocidade da movimentação
+// Movement speed
 setInterval(() => {
     if(!timerId){
-        return
+        return;
     }
     if (pressRight) {
         moveRight();
@@ -59,7 +58,7 @@ setInterval(() => {
         rotateShape();
         mustBeRotate = false
     }
-}, 25)
+}, 23)
 
 function controlKeyBoard(event){
     if(event.keyCode == 32){
@@ -69,23 +68,23 @@ function controlKeyBoard(event){
     
     if (timerId){
         if (event.key == 'ArrowRight') {
-            pressRight = true
+            pressRight = true;
         }
         else if (event.key == 'ArrowLeft') {
-            pressLeft = true
+            pressLeft = true;
         }
         else if (event.key == 'ArrowDown') {
-            pressDown = true
+            pressDown = true;
         }
         else if (event.key == 'ArrowUp') {
-            pressUp = true
+            pressUp = true;
         }
     }
 }
 
-// Funções para movimentação das peças
+// Functions for moving pieces
 function moveDown(){
-    // Verifica se o jogo já foi vencido para parar
+    // Check if the game has already been beaten to stop
     if (hasWon) return;
 
     freezeFilled();
@@ -98,18 +97,18 @@ function moveDown(){
 function moveLeft(){
     if (hasWon) return;
 
-    // Verificação para o limite de borda
-    const isEdgeLimit  = currentShape.some((squareIndex) => (squareIndex + currentPosition) % gridWidth === 0)
-    if (isEdgeLimit) return
+    // Check for edge limit
+    const isEdgeLimit  = currentShape.some((squareIndex) => (squareIndex + currentPosition) % gridWidth === 0);
+    if (isEdgeLimit) return;
 
     const isFilled = currentShape.some(squareIndex => 
         $gridSquares[squareIndex + currentPosition - 1].classList.contains("filled")
     )
 
-    if (isFilled) return
+    if (isFilled) return;
 
     eraseShape();
-    currentPosition--
+    currentPosition--;
     drawShape();
     playMoveSound();
 }
@@ -117,15 +116,16 @@ function moveLeft(){
 function moveRight(){
     if (hasWon) return;
 
-    const isEdgeLimit  = currentShape.some((squareIndex) => (squareIndex + currentPosition) % gridWidth === gridWidth - 1)
-    if (isEdgeLimit) return
+    const isEdgeLimit  = currentShape.some((squareIndex) => (squareIndex + currentPosition) % gridWidth === gridWidth - 1);
+    if (isEdgeLimit) return;
 
     const isFilled = currentShape.some(squareIndex => 
         $gridSquares[squareIndex + currentPosition + 1].classList.contains("filled")
     )
-    if (isFilled) return
+
+    if (isFilled) return;
     eraseShape();
-    currentPosition++
+    currentPosition++;
     drawShape();
     playMoveSound();
 }
@@ -148,25 +148,32 @@ function rotateShape(){
     } else {
         currentRotation++;
     }
-    currentShape = allShapes[randomShape][currentRotation]
+
+    currentShape = allShapes[randomShape][currentRotation];
     
-    const isLeftEdgeLimit = currentShape.some((squareIndex)=> (squareIndex + currentPosition) % gridWidth === 0 )
-    const isRightEdgeLimit = currentShape.some((squareIndex)=> (squareIndex + currentPosition) % gridWidth === gridWidth-1 )
+    const isLeftEdgeLimit = currentShape.some(( squareIndex ) =>
+        (squareIndex + currentPosition) % gridWidth === 0
+    );
+
+    const isRightEdgeLimit = currentShape.some(( squareIndex ) =>
+        (squareIndex + currentPosition) % gridWidth === gridWidth-1
+    );
 
     if (isLeftEdgeLimit && isRightEdgeLimit){
         previousRotation();
     }
+
     const isFilled  = currentShape.some(squareIndex =>
         $gridSquares[squareIndex + currentPosition].classList.contains("filled")
-    )
-    if (isFilled) {
-        previousRotation();
-    }
+    );
+
+    if (isFilled) previousRotation();
+
     drawShape();
     playRotateSound();
 }
 
-/* Controle Mobile */
+// Mobile Control
 const isMobile = window.matchMedia('(max-width: 990px)').matches;
 
 if (isMobile) {
@@ -177,17 +184,17 @@ if (isMobile) {
         'rotate-button': rotateShape,
     }
 
-    const $mobileButtons = document.querySelectorAll(".mobile-buttons-container button");
+    const $mobileButtons = document
+        .querySelectorAll(".mobile-buttons-container button");
 
-    $mobileButtons.forEach(button=>{
+    $mobileButtons.forEach(button => {
         button.classList.add('disabled-dbl-tap-zoom');
 
-        button.addEventListener("click", ()=>{
+        button.addEventListener("click", () => {
             if (timerId){
                 buttonMap[button.classList[0]]()
             }
     
         });
-
     });
 }

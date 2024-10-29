@@ -1,7 +1,7 @@
-// Configurações do jogo
+// Game settings
 let hasWon = false;
-const gridWidth = 10; // Tamanho total de colunas
-let currentMusicIndex = 0; // Índice da música atual
+const gridWidth = 10; // Total column size
+let currentMusicIndex = 0; // Current music index
 const musicA = new Audio("./src/assets/sounds/music/TetrisTheme8BitUniverse.mp3");
 const musicB = new Audio("./src/assets/sounds/music/Happy8BitUniverse.mp3");
 const musicC = new Audio("./src/assets/sounds/music/BillieJean8BitUniverse.mp3");
@@ -18,7 +18,7 @@ const freezeAudio = new Audio("./src/assets/sounds/colision.wav");
 const moveSound = new Audio("./src/assets/sounds/move-piece.mp3");
 const rotateSound = new Audio("./src/assets/sounds/rotate-piece.mp3");
 
-// Funções para ajustar os sons
+// Functions to adjust sounds
 function playRotateSound() {
     rotateSound.playbackRate = 3.50;
     rotateSound.play();
@@ -29,13 +29,14 @@ function playMoveSound() {
     moveSound.play();
 }
 
-// Controles de áudio
+// Audio controls
 const muteButton = document.getElementById("mute-button");
 const audioIcon = document.getElementById("audio-icon");
 let isMuted = false;
 
 muteButton.addEventListener("click", () => {
-    isMuted = !isMuted; // Inverte o estado de mutado
+    // Inverts the mutated state
+    isMuted = !isMuted; 
 
     if (isMuted) {
         unmuteAudio();
@@ -48,7 +49,7 @@ function muteAudio() {
     audioIcon.classList.remove("audio-on");
     audioIcon.classList.add("audio-off");
 
-    // Define volume de todas as músicas para 0
+    // Sets volume of all songs to 0
     setMusicVolume(0);
 }
 
@@ -56,7 +57,7 @@ function unmuteAudio() {
     audioIcon.classList.remove("audio-off");
     audioIcon.classList.add("audio-on");
 
-    // Restaura o volume original das músicas
+    // Restores the original volume of songs
     setMusicVolume(1.0);
 }
 
@@ -81,14 +82,14 @@ function setSoundEffects(volume){
     freezeAudio.volume = volume;
 }
 
-// Configura os volumes iniciais
+// Sets initial volumes
 setMusicVolume(0.5);
 setSoundEffects(0.4);
 
-let currentMusic = musicA; // Inicialmente, com a música A
-let musicStarted = false; // Flag para verificar se a música já começou
+let currentMusic = musicA; // Initially, with the song A
+let musicStarted = false; // Flag to check if the music has already started
 
-// Função para iniciar a música de fundo
+// Function to start background music
 function playBackgroundMusic() {
     if (!musicStarted && currentMusic.paused) {
         currentMusic.play();
@@ -96,7 +97,7 @@ function playBackgroundMusic() {
     }
 }
 
-// Função para trocar a música de fundo
+// Function to change background music
 function changeMusic(newMusic) {
     if (currentMusic !== newMusic) {
         currentMusic.pause();
@@ -115,7 +116,6 @@ function playCompleteLineAudio() {
     completLineAudio.playbackRate = 1.2;
     completLineAudio.play();
 
-    linesCleared++; // Incrementa o contador de linhas
-    updateLinesCounter(); // Atualiza o contador de linhas
-    
+    linesCleared++; // Increments the line counter
+    updateLinesCounter(); // Updates the row counter
 }

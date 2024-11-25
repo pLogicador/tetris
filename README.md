@@ -28,7 +28,7 @@ O jogo possui controles simples e é uma ótima maneira de passar o tempo relemb
 * O jogo termina quando as peças se acumulam até o topo da tela.
   
 ## Como executar o projeto
-Acesse este [link](https://plogicador.github.io/TETRIS/) em seu navegador da web para jogar.
+Acesse este [link](https://plogicador.github.io/tetris/) em seu navegador da web para jogar.
 
 ## Agradecimentos
 Quero expressar minha sincera gratidão ao canal "8 Bit Universe" por disponibilizar remixes incríveis das músicas usadas neste jogo. Suas criações musicais contribuíram significativamente para a experiência de jogo.
